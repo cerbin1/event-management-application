@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+
+    <title>Zgłaszanie wydarzenia</title>
+</head>
+<body>
+<div class="container">
+    <h1>Formularz</h1>
+    <form action="#" th:action="@{/test}" th:object="${event}" method="post">
+        <label for="name">Nazwa:</label>
+        <input id="name" type="text" th:field="*{name}"/>
+
+        <label for="organizer-name">Nazwa organizatora:</label>
+        <input id="organizer-name" type="text" th:field="*{organizerName}"/>
+
+        <label for="date-of-event">Data wydarzenia:</label>
+        <input id="date-of-event" type="text" th:field="*{dateOfTheEvent}"/>
+
+        <label for="description">Opis wydarzenia:</label>
+        <input id="description" type="text" th:field="*{description}"/>
+
+        <label for="number-of-participants">Planowana liczba uczestników:</label>
+        <input id="number-of-participants" type="text" th:field="*{plannedNumberOfParticipants}"/>on}" />
+
+        <label for="name-and-surname">Imię i nazwisko:</label>
+        <input id="name-and-surname" type="text" th:field="*{organizer.nameAndSurname}"/>
+
+        <label for="phone">Imię i nazwisko:</label>
+        <input id="phone" type="text" th:field="*{organizer.phoneNumber}"/>
+
+        <label for="email">Imię i nazwisko:</label>
+        <input id="email" type="text" th:field="*{organizer.email}"/>
+
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+
+</div>
+
+</body>
+</html>
