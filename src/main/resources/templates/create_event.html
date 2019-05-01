@@ -4,39 +4,73 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Zgłaszanie wydarzenia</title>
 </head>
 <body>
+
 <div class="container">
-    <h1>Formularz</h1>
+    <h1>Formularz zgłaszania wydarzenia</h1>
     <form action="#" th:action="@{/test}" th:object="${event}" method="post">
-        <label for="name">Nazwa:</label>
-        <input id="name" type="text" th:field="*{name}"/>
+        <div class="form-group">
+            <label for="event-name">Nazwa wydarzenia</label>
+            <input id="event-name" class="form-control" type="text" th:field="*{name}"/>
+        </div>
+        <div class="form-group">
+            <label for="event-category">Kategoria wydarzenia</label> <!--(TODO:select)-->
+            <input id="event-category" class="form-control" type="text" th:field="*{category}"/>
+        </div>
+        <div class="form-group">
+            <label for="event-place">Miejsce/miejsca wydarzenia</label>
+            <input id="event-place" class="form-control" type="text" th:field="*{place}"/>
+        </div>
+        <div class="form-group">
+            <label for="organizer-name">Nazwa organizatora</label>
+            <input id="organizer-name" class="form-control" type="text" th:field="*{organizerName}"/>
+        </div>
+        <div class="form-group">
+            <label for="date-of-event">Data wydarzenia</label>
+            <input id="date-of-event" class="form-control" type="date" th:field="*{dateOfTheEvent}"/>
+        </div>
+        <div class="form-group">
+            <label for="description">Opis wydarzenia</label>
+            <textarea id="description" class="form-control" th:field="*{description}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="number-of-participants">Planowana liczba uczestników</label>
+            <input id="number-of-participants" class="form-control" type="number"
+                   th:field="*{plannedNumberOfParticipants}"/>
+        </div>
+        <div class="form-group">
+            <label for="comments">Uwagi</label>
+            <textarea id="comments" class="form-control" th:field="*{comments}"></textarea>
+        </div>
 
-        <label for="organizer-name">Nazwa organizatora:</label>
-        <input id="organizer-name" type="text" th:field="*{organizerName}"/>
-
-        <label for="date-of-event">Data wydarzenia:</label>
-        <input id="date-of-event" type="text" th:field="*{dateOfTheEvent}"/>
-
-        <label for="description">Opis wydarzenia:</label>
-        <input id="description" type="text" th:field="*{description}"/>
-
-        <label for="number-of-participants">Planowana liczba uczestników:</label>
-        <input id="number-of-participants" type="text" th:field="*{plannedNumberOfParticipants}"/>on}" />
-
-        <label for="name-and-surname">Imię i nazwisko:</label>
-        <input id="name-and-surname" type="text" th:field="*{organizer.nameAndSurname}"/>
-
-        <label for="phone">Imię i nazwisko:</label>
-        <input id="phone" type="text" th:field="*{organizer.phoneNumber}"/>
-
-        <label for="email">Imię i nazwisko:</label>
-        <input id="email" type="text" th:field="*{organizer.email}"/>
-
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+        <h3>Dane osoby organizującej wydarzenie</h3>
+        <div class="form-group">
+            <label for="name-and-surname">Imię i nazwisko</label>
+            <input id="name-and-surname" class="form-control" type="text" th:field="*{organizer.nameAndSurname}"/>
+        </div>
+        <div class="form-group">
+            <label for="phone">Numer telefonu</label>
+            <input id="phone" class="form-control" type="text" th:field="*{organizer.phoneNumber}"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Adres e-mail</label>
+            <input id="email" class="form-control" type="email" th:field="*{organizer.email}"/>
+        </div>
+        <div class="form-group">
+            <label for="rodo-clause">RODO</label>
+            <input id="rodo-clause" type="checkbox"/>
+        </div>
+        <button type="reset" class="btn btn-warning">
+            Wyczyść formularz
+        </button>
+        <button type="submit" class="btn btn-primary">
+            Wyślij
+        </button>
     </form>
 
 </div>
