@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+            th:href="@{/bootstrap/css/bootstrap.min.css}"
+            rel="stylesheet"
+            type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <title>Strona główna</title>
+
+    <title th:text="#{home.pageTitle}"></title>
 </head>
 <body>
-<form action="wydarzenia/dodaj" method="get">
-    <button type="submit">Zgłoś wydarzenie</button>
-</form>
-<select id="locales">
-    <option value=""></option>
-    <option value="en">angielski</option>
-    <option value="pl">polski</option>
-</select>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#locales").change(function () {
-            var selectedOption = $('#locales').val();
-            if (selectedOption !== '') {
-                window.location.replace('international?lang=' + selectedOption);
-            }
-        });
-    });
-</script>
+<div class="container">
+    <div class="row">
+        <h1 class="col-12 text-center" th:text="#{home.mainText}"></h1>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <form action="wydarzenia/dodaj" method="get">
+                <button class="btn btn-primary" type="submit" th:text="#{home.addEvent.button}"></button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <label for="locales" th:text="#{home.chooseLanguage.label}">
+            </label>
+            <select id="locales">
+                <option value=""></option>
+                <option value="en" th:text="#{home.lang.eng}"></option>
+                <option value="pl" th:text="#{home.lang.pl}"></option>
+            </select>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" th:src="@{/js/home.js}"></script>
 </body>
 </html>
