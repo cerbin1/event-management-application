@@ -1,4 +1,4 @@
-package pl.wydarzenia.model;
+package pl.wydarzenia.eventManagement.model;
 
 import lombok.Data;
 

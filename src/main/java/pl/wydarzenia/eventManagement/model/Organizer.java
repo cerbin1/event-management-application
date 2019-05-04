@@ -1,9 +1,9 @@
-package pl.wydarzenia.model;
+package pl.wydarzenia.eventManagement.model;
 
 import lombok.Data;
 
 @Data
-public class Organizer {
+class Organizer {
     private String nameAndSurname;
     private String phoneNumber;
     private String email;
