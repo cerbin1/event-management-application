@@ -12,7 +12,7 @@ public class Event {
     @Size(min = 2, max = 30, message = "To pole musi mieć pomiędzy 2 a 30 znaków!")
     private String name;
 
-    @NotEmpty
+    @NotEmpty(message = "To pole nie może być puste!")
     private String category;
 
     //    @NotEmpty
