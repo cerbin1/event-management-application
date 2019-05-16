@@ -15,7 +15,7 @@ public class Event {
     @NotEmpty(message = "To pole nie może być puste!")
     private String category;
 
-    //    @NotEmpty
+    @NotEmpty(message = "To pole nie może być puste!")
     private String place;
 
     //    @NotEmpty

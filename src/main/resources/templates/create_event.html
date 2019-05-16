@@ -35,9 +35,15 @@
         </div>
         <div class="form-group">
             <label for="event-place" th:text="#{create_event.eventPlace.label}"></label>
-            <input id="event-place" class="form-control" type="text" th:field="*{place}"/>
-            <span th:if="${#fields.hasErrors('place')}"
-                  th:errors="*{place}">Place jest ZLE!</span>
+            <select id="event-place" class="form-control" th:field="*{place}">
+                <option value=""></option>
+                <th:block th:each="place : ${eventPlaces}">
+                    <option th:value="${place.value}" th:text="${place.name}"></option>
+                </th:block>
+            </select>
+            <div th:if="${#fields.hasErrors('place')}" class="alert alert-danger">
+                <span th:errors="*{place}"></span>
+            </div>
         </div>
         <!--       <div class="form-group">
                    <label for="organizer-name" th:text="#{create_event.organizerName.label}"></label>

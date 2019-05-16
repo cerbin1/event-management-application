@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
+import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.service.EventService;
 import pl.wydarzenia.eventManagement.validator.EventValidator;
 
@@ -27,6 +28,11 @@ public class EventManagementController {
     @ModelAttribute("eventCategories")
     public List<EventCategory> getEventCategories() {
         return eventService.getCategories();
+    }
+
+    @ModelAttribute("eventPlaces")
+    public List<EventPlace> getEventPlaces() {
+        return eventService.getPlaces();
     }
 
     @GetMapping("wydarzenia/dodaj")
