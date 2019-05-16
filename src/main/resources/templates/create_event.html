@@ -17,65 +17,72 @@
         <div class="form-group">
             <label for="event-name" th:text="#{create_event.eventName.label}"></label>
             <input id="event-name" class="form-control" type="text" th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}">To pole nie może być puste</span>
+            <!--            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
         </div>
-        <div class="form-group">
-            <label for="event-category" th:text="#{create_event.eventCategory.label}"></label>
-            <select class="form-control" th:field="*{category}" id="event-category">
-                <option value="00"></option>
-                <th:block th:each="category : ${eventCategories}">
-                    <option th:value="${category.value}" th:text="${category.name}"></option>
-                </th:block>
-            </select>
-        </div>
+        <!--                <div class="form-group">
+                            <label for="event-category" th:text="#{create_event.eventCategory.label}"></label>
+                            <select class="form-control" th:field="*{category}" id="event-category">
+                                <option value=""></option>
+                                <th:block th:each="category : ${eventCategories}">
+                                    <option th:value="${category.value}" th:text="${category.name}"></option>
+                                </th:block>
+                            </select>
+                        </div>-->
         <div class="form-group">
             <label for="event-place" th:text="#{create_event.eventPlace.label}"></label>
             <input id="event-place" class="form-control" type="text" th:field="*{place}"/>
+            <span th:if="${#fields.hasErrors('place')}"
+                  th:errors="*{place}">Place jest ZLE!</span>
         </div>
-        <div class="form-group">
-            <label for="organizer-name" th:text="#{create_event.organizerName.label}"></label>
-            <input id="organizer-name" class="form-control" type="text" th:field="*{organizerName}"/>
-        </div>
-        <div class="form-group">
-            <label for="date-of-event" th:text="#{create_event.eventDate.label}"></label>
-            <input id="date-of-event" class="form-control" type="date" th:field="*{dateOfTheEvent}"/>
-        </div>
-        <div class="form-group">
-            <label for="description" th:text="#{create_event.eventDescription.label}"></label>
-            <textarea id="description" class="form-control" th:field="*{description}"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="number-of-participants" th:text="#{create_event.numberOfParticipants.label}"></label>
-            <input id="number-of-participants" class="form-control" type="number"
-                   th:field="*{plannedNumberOfParticipants}"/>
-        </div>
-        <div class="form-group">
-            <label for="comments" th:text="#{create_event.comments.label}"></label>
-            <textarea id="comments" class="form-control" th:field="*{comments}"></textarea>
-        </div>
+        <!--       <div class="form-group">
+                   <label for="organizer-name" th:text="#{create_event.organizerName.label}"></label>
+                   <input id="organizer-name" class="form-control" type="text" th:field="*{organizerName}"/>
+               </div>
+               <div class="form-group">
+                   <label for="date-of-event" th:text="#{create_event.eventDate.label}"></label>
+                   <input id="date-of-event" class="form-control" type="date" th:field="*{dateOfTheEvent}"/>
+               </div>
+               <div class="form-group">
+                   <label for="description" th:text="#{create_event.eventDescription.label}"></label>
+                   <textarea id="description" class="form-control" th:field="*{description}"></textarea>
+               </div>
+               <div class="form-group">
+                   <label for="number-of-participants" th:text="#{create_event.numberOfParticipants.label}"></label>
+                   <input id="number-of-participants" class="form-control" type="number"
+                          th:field="*{plannedNumberOfParticipants}"/>
+               </div>
+               <div class="form-group">
+                   <label for="comments" th:text="#{create_event.comments.label}"></label>
+                   <textarea id="comments" class="form-control" th:field="*{comments}"></textarea>
+               </div>
 
-        <h3 th:text="#{create_event.organizer.info}"></h3>
-        <div class="form-group">
-            <label for="name-and-surname" th:text="#{create_event.organizerNameAndSurname.label}"></label>
-            <input id="name-and-surname" class="form-control" type="text" th:field="*{organizer.nameAndSurname}"/>
-        </div>
-        <div class="row">
-            <div class="form-group col-6">
-                <div class="form-group">
-                    <label for="phone" th:text="#{create_event.organizerPhoneNumber.label}"></label>
-                    <input id="phone" class="form-control" type="text" th:field="*{organizer.phoneNumber}"/>
-                </div>
-            </div>
-            <div class="form-group col-6">
-                <label for="email" th:text="#{create_event.organizerEmail.label}"></label>
-                <input id="email" class="form-control" type="email" th:field="*{organizer.email}"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="rodo-clause" th:text="#{create_event.rodo.label}"></label>
-            <input id="rodo-clause" type="checkbox"/>
-        </div>
-        <button type="reset" class="btn btn-warning" th:text="#{create_event.button.reset}">
-        </button>
+               <h3 th:text="#{create_event.organizer.info}"></h3>
+               <div class="form-group">
+                   <label for="name-and-surname" th:text="#{create_event.organizerNameAndSurname.label}"></label>
+                   <input id="name-and-surname" class="form-control" type="text" th:field="*{organizer.nameAndSurname}"/>
+               </div>
+               <div class="row">
+                   <div class="form-group col-6">
+                       <div class="form-group">
+                           <label for="phone" th:text="#{create_event.organizerPhoneNumber.label}"></label>
+                           <input id="phone" class="form-control" type="text" th:field="*{organizer.phoneNumber}"/>
+                       </div>
+                   </div>
+                   <div class="form-group col-6">
+                       <label for="email" th:text="#{create_event.organizerEmail.label}"></label>
+                       <input id="email" class="form-control" type="email" th:field="*{organizer.email}"/>
+                       <span th:if="${#fields.hasErrors('organizer.email')}"
+                             th:errors="*{organizer.email}">To pole nie może być puste</span>
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label for="rodo-clause" th:text="#{create_event.rodo.label}"></label>
+                   <input id="rodo-clause" type="checkbox"/>
+               </div>
+               <button type="reset" class="btn btn-warning" th:text="#{create_event.button.reset}">
+               </button>-->
         <button type="submit" class="btn btn-primary" th:text="#{create_event.button.submit}">
         </button>
     </form>
