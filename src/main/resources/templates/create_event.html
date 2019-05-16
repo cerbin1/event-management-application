@@ -17,19 +17,22 @@
         <div class="form-group">
             <label for="event-name" th:text="#{create_event.eventName.label}"></label>
             <input id="event-name" class="form-control" type="text" th:field="*{name}"/>
-            <span th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}">To pole nie może być puste</span>
-            <!--            <p class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
+            <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
+                <span th:errors="*{name}"></span>
+            </div>
         </div>
-        <!--                <div class="form-group">
-                            <label for="event-category" th:text="#{create_event.eventCategory.label}"></label>
-                            <select class="form-control" th:field="*{category}" id="event-category">
-                                <option value=""></option>
-                                <th:block th:each="category : ${eventCategories}">
-                                    <option th:value="${category.value}" th:text="${category.name}"></option>
-                                </th:block>
-                            </select>
-                        </div>-->
+        <div class="form-group">
+            <label for="event-category" th:text="#{create_event.eventCategory.label}"></label>
+            <select class="form-control" th:field="*{category}" id="event-category">
+                <option value=""></option>
+                <th:block th:each="category : ${eventCategories}">
+                    <option th:value="${category.value}" th:text="${category.name}"></option>
+                </th:block>
+            </select>
+            <div th:if="${#fields.hasErrors('category')}" class="alert alert-danger">
+                <span th:errors="*{category}"></span>
+            </div>
+        </div>
         <div class="form-group">
             <label for="event-place" th:text="#{create_event.eventPlace.label}"></label>
             <input id="event-place" class="form-control" type="text" th:field="*{place}"/>

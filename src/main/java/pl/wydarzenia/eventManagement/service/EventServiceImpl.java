@@ -5,32 +5,10 @@ import pl.wydarzenia.eventManagement.model.EventCategory;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class EventServiceImpl implements EventService {
-    @Override
-    public List<EventCategory> getCategoriesForLocale(Locale locale) {
-        String languageTag = locale.toLanguageTag();
-        if (languageTag.equals("en") || languageTag.equals("und")) {
-            return getCategoriesInEnglish();
-        } else if (languageTag.equals("pl")) {
-            return getCategoriesInPolish();
-        } else {
-            throw new RuntimeException("Wrong Locale");
-        }
-    }
-
-    private List<EventCategory> getCategoriesInEnglish() {
-        return Arrays.asList(
-                new EventCategory("01", "Celebrations"),
-                new EventCategory("02", "Meetings"),
-                new EventCategory("03", "Scientific"),
-                new EventCategory("04", "Cultural"),
-                new EventCategory("05", "Sports"));
-    }
-
-    private List<EventCategory> getCategoriesInPolish() {
+    public List<EventCategory> getCategories() {
         return Arrays.asList(
                 new EventCategory("01", "Uroczystości"),
                 new EventCategory("02", "Spotkania"),

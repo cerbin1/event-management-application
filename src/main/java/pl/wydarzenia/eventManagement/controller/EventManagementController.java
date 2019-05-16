@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.wydarzenia.eventManagement.model.Event;
+import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.service.EventService;
 import pl.wydarzenia.eventManagement.validator.EventValidator;
 
 import javax.validation.Valid;
-
-import static pl.wydarzenia.utils.SpringUtils.getActualLocale;
+import java.util.List;
 
 @Controller
 public class EventManagementController {
@@ -24,11 +24,14 @@ public class EventManagementController {
         this.eventService = eventService;
     }
 
+    @ModelAttribute("eventCategories")
+    public List<EventCategory> getEventCategories() {
+        return eventService.getCategories();
+    }
+
     @GetMapping("wydarzenia/dodaj")
     public String getEventCreationForm(Model model) {
         model.addAttribute("event", new Event());
-        model.addAttribute("eventCategories",
-                eventService.getCategoriesForLocale(getActualLocale()));
         return "create_event";
     }
 
@@ -41,7 +44,6 @@ public class EventManagementController {
         if (result.hasErrors()) {
             return "create_event";
         }
-        System.out.println("Bez bledow");
-        return "create_event"; // TODO:save
+        return "todo"; // TODO:save
     }
 }

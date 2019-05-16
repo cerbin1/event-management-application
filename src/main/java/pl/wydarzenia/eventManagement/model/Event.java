@@ -3,15 +3,16 @@ package pl.wydarzenia.eventManagement.model;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
 public class Event {
-    @NotEmpty
-//    @Size(min = 2, max = 20)
+    @NotEmpty(message = "To pole nie może być puste!")
+    @Size(min = 2, max = 30, message = "To pole musi mieć pomiędzy 2 a 30 znaków!")
     private String name;
 
-    //    @NotEmpty
+    @NotEmpty
     private String category;
 
     //    @NotEmpty
