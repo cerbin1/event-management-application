@@ -11,9 +11,10 @@ import java.util.Locale;
 public class EventServiceImpl implements EventService {
     @Override
     public List<EventCategory> getCategoriesForLocale(Locale locale) {
-        if (locale.toLanguageTag().equals("en")) {
+        String languageTag = locale.toLanguageTag();
+        if (languageTag.equals("en") || languageTag.equals("und")) {
             return getCategoriesInEnglish();
-        } else if (locale.toLanguageTag().equals("pl")) {
+        } else if (languageTag.equals("pl")) {
             return getCategoriesInPolish();
         } else {
             throw new RuntimeException("Wrong Locale");
