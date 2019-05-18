@@ -36,6 +36,9 @@ public class Event {
     @Size(max = 1000, message = "To pole może miec maksymalnie 1000 znaków!")
     private String comments;
 
+    @NotNull(message = "Do zgłoszenia wydarzenia wymagana jest potwierdzona klauzula RODO!")
+    private Boolean rodoClause = null;
+
     @NotEmpty(message = "To pole nie może być puste!")
     private String organizerName;
 

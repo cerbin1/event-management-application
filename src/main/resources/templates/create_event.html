@@ -120,7 +120,10 @@
 
         <div class="form-group">
             <label for="rodo-clause" th:text="#{createEvent.rodo.label}"></label>
-            <input id="rodo-clause" type="checkbox"/>
+            <input id="rodo-clause" type="checkbox" name="rodoClause" th:checked="*{rodoClause}"/>
+            <div th:if="${#fields.hasErrors('rodoClause')}" class="alert alert-danger">
+                <span th:errors="*{rodoClause}"></span>
+            </div>
         </div>
 
         <div class="form-group">

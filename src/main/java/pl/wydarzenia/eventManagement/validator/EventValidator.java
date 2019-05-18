@@ -15,8 +15,8 @@ public class EventValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Event event = (Event) target;
-        if (event.getPlace() == null || event.getPlace().equals("")) {
-            errors.rejectValue("place", "create_event.button.submit");
+        if (event.getRodoClause() != null && !event.getRodoClause()) {
+            errors.rejectValue("rodoClause", "createEvent.validation.rodoClause.message");
         }
     }
 }
