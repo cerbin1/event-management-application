@@ -14,6 +14,7 @@
 <div class="container">
     <h1 th:text="#{createEvent.mainText}"></h1>
     <h3 th:text="#{createEvent.eventInfo}"></h3>
+    <h6 th:text="#{createEvent.fieldsRequiredInfo}"></h6>
     <form action="#" th:action="@{/test}" th:object="${event}" method="post">
         <div class="form-group">
             <label for="event-name" th:text="#{createEvent.eventName.label}"></label>
