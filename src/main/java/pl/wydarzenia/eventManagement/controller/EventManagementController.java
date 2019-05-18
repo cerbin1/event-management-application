@@ -25,16 +25,6 @@ public class EventManagementController {
         this.eventService = eventService;
     }
 
-    @ModelAttribute("eventCategories")
-    public List<EventCategory> getEventCategories() {
-        return eventService.getCategories();
-    }
-
-    @ModelAttribute("eventPlaces")
-    public List<EventPlace> getEventPlaces() {
-        return eventService.getPlaces();
-    }
-
     @GetMapping("wydarzenia/dodaj")
     public String getEventCreationForm(Model model) {
         model.addAttribute("event", new Event());
@@ -51,5 +41,15 @@ public class EventManagementController {
             return "create_event";
         }
         return "todo"; // TODO:save
+    }
+
+    @ModelAttribute("eventCategories")
+    public List<EventCategory> getEventCategories() {
+        return eventService.getCategories();
+    }
+
+    @ModelAttribute("eventPlaces")
+    public List<EventPlace> getEventPlaces() {
+        return eventService.getPlaces();
     }
 }
