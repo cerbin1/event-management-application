@@ -84,6 +84,7 @@
             </div>
         </div>
 
+
         <h3 th:text="#{createEvent.organizer.info}"></h3>
         <div class="form-group">
             <div class="row">
@@ -124,6 +125,19 @@
             <div th:if="${#fields.hasErrors('rodoClause')}" class="alert alert-danger">
                 <span th:errors="*{rodoClause}"></span>
             </div>
+        </div>
+
+
+        <h3 th:text="#{createEvent.additionalServices.info}"></h3>
+        <div class="form-group">
+            <label for="promotional-campaign" th:text="#{createEvent.promotionalCampaign.label}"></label>
+            <input id="promotional-campaign" type="checkbox" name="promotionalCampaign"
+                   th:checked="*{promotionalCampaign}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="photograph" th:text="#{createEvent.photograph.label}"></label>
+            <input id="photograph" type="checkbox" name="photograph" th:checked="*{photograph}"/>
         </div>
 
         <div class="form-group">
