@@ -1,9 +1,10 @@
 package pl.wydarzenia.eventManagement.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static pl.wydarzenia.utils.StringUtils.EMAIL_REGEX;
 
@@ -23,7 +24,8 @@ public class Event {
     private String organizationName;
 
     @NotNull(message = "To pole nie może być puste!")
-    private LocalDate dateOfTheEvent;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date dateOfTheEvent;
 
     @NotEmpty(message = "To pole nie może być puste!")
     private String description;

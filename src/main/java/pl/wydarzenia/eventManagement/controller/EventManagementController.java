@@ -31,16 +31,29 @@ public class EventManagementController {
         return "create_event";
     }
 
-    @PostMapping("/test")
+    @PostMapping("wydarzenia/dodaj/podsumowanie")
     public String submitEventCreationForm(
-            @Valid @ModelAttribute Event event,
+            Model model,
+            @Valid Event event,
             BindingResult result) {
         EventValidator eventValidator = new EventValidator();
         eventValidator.validate(event, result);
         if (result.hasErrors()) {
             return "create_event";
         }
-        return "todo"; // TODO:save
+        return "create_event_summary";
+    }
+
+    @PostMapping("/submit")
+    public String submit(
+            @Valid @ModelAttribute Event event,
+            BindingResult result) {
+        if (result.hasErrors()) {
+            return "create_event";
+        }
+
+        // TODOO: save
+        return "home";
     }
 
     @ModelAttribute("eventCategories")

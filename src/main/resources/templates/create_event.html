@@ -15,7 +15,7 @@
     <h1 th:text="#{createEvent.mainText}"></h1>
     <h3 th:text="#{createEvent.eventInfo}"></h3>
     <h6 th:text="#{createEvent.fieldsRequiredInfo}"></h6>
-    <form action="#" th:action="@{/test}" th:object="${event}" method="post">
+    <form action="#" th:action="@{/wydarzenia/dodaj/podsumowanie}" th:object="${event}" method="post">
         <div class="form-group">
             <label for="event-name" th:text="#{createEvent.eventName.label}"></label>
             <input id="event-name" class="form-control" type="text" th:field="*{name}"/>
@@ -143,7 +143,7 @@
         <div class="form-group">
             <button type="reset" class="btn btn-warning" th:text="#{createEvent.button.reset}">
             </button>
-            <button type="submit" class="btn btn-primary" th:text="#{createEvent.button.submit}">
+            <button type="submit" class="btn btn-primary" th:text="#{createEvent.button.summary}">
             </button>
         </div>
     </form>
