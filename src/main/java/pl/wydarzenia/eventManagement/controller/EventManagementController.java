@@ -44,7 +44,7 @@ public class EventManagementController {
         return "create_event_summary";
     }
 
-    @PostMapping("/submit")
+    @PostMapping("/wydarzenie/dodaj/wyslij")
     public String submit(
             @Valid @ModelAttribute Event event,
             BindingResult result) {
@@ -53,7 +53,7 @@ public class EventManagementController {
         }
 
         // TODOO: save
-        return "home";
+        return "redirect:/";
     }
 
     @ModelAttribute("eventCategories")

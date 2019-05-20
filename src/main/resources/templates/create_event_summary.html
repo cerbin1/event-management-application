@@ -15,15 +15,15 @@
 <div class="container">
     <h1 th:text="#{createEventSummary.mainText}"></h1>
 
-    <form action="#" th:action="@{/submit}" th:object="${event}" method="post">
-        <h3 th:text="#{createEvent.eventInfo}"></h3>
+    <form action="#" th:action="@{/wydarzenie/dodaj/wyslij}" th:object="${event}" method="post">
+        <h3 th:text="#{createEventSummary.eventInfo}"></h3>
         <div class="form-group">
-            <label for="event-name" th:text="#{createEvent.eventName.label}"></label>
+            <label for="event-name" th:text="#{createEventSummary.eventName.label}"></label>
             <input id="event-name" class="form-control" type="text"
                    th:name="name" th:value="*{name}" th:readonly="true"/>
         </div>
         <div class="form-group">
-            <label for="event-category" th:text="#{createEvent.eventCategory.label}"></label>
+            <label for="event-category" th:text="#{createEventSummary.eventCategory.label}"></label>
             <select id="event-category" class="form-control" th:field="*{category}" th:readonly="true">
                 <th:block th:each="category : ${eventCategories}">
                     <option th:selected="${event.category==category.value}" th:value="${category.value}"
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            <label for="event-place" th:text="#{createEvent.eventPlace.label}"></label>
+            <label for="event-place" th:text="#{createEventSummary.eventPlace.label}"></label>
             <select id="event-place" class="form-control" th:field="*{place}" th:readonly="true">
                 <th:block th:each="place : ${eventPlaces}">
                     <option th:selected="${event.place==place.value}" th:value="${place.value}"
@@ -43,45 +43,45 @@
         </div>
 
         <div class="form-group">
-            <label for="organization-name" th:text="#{createEvent.organizationName.label}"></label>
+            <label for="organization-name" th:text="#{createEventSummary.organizationName.label}"></label>
             <input id="organization-name" class="form-control" type="text"
                    th:name="organizationName" th:value="*{organizationName}" th:readonly="true"/>
         </div>
 
         <div class="form-group">
-            <label for="date-of-event" th:text="#{createEvent.eventDate.label}"></label>
+            <label for="date-of-event" th:text="#{createEventSummary.eventDate.label}"></label>
             <input id="date-of-event" class="form-control"
                    th:name="dateOfTheEvent" th:value="*{dateOfTheEvent}" th:text="${event.dateOfTheEvent}"
                    th:readonly="true"/>
         </div>
 
         <div class="form-group">
-            <label for="description" th:text="#{createEvent.eventDescription.label}"></label>
+            <label for="description" th:text="#{createEventSummary.eventDescription.label}"></label>
             <input id="description" class="form-control" type="text"
                    th:name="description" th:value="*{description}" th:readonly="true"/>
         </div>
 
         <div class="form-group">
-            <label for="number-of-participants" th:text="#{createEvent.numberOfParticipants.label}"></label>
+            <label for="number-of-participants" th:text="#{createEventSummary.numberOfParticipants.label}"></label>
             <input id="number-of-participants" class="form-control" type="text"
                    th:name="plannedNumberOfParticipants" th:value="*{plannedNumberOfParticipants}" th:readonly="true"/>
         </div>
         <div class="form-group">
-            <label for="comments" th:text="#{createEvent.comments.label}"></label>
+            <label for="comments" th:text="#{createEventSummary.comments.label}"></label>
             <textarea id="comments" class="form-control"
                       th:name="comments" th:text="*{comments}" th:readonly="true"></textarea>
         </div>
 
-        <h3 th:text="#{createEvent.organizer.info}"></h3>
+        <h3 th:text="#{createEventSummary.organizer.info}"></h3>
         <div class="form-group">
             <div class="row">
                 <div class="col-6">
-                    <label for="organizer-name" th:text="#{createEvent.organizerName.label}"></label>
+                    <label for="organizer-name" th:text="#{createEventSummary.organizerName.label}"></label>
                     <input id="organizer-name" class="form-control" type="text"
                            th:name="organizerName" th:value="*{organizerName}" th:readonly="true"/>
                 </div>
                 <div class="col-6">
-                    <label for="organizer-surname" th:text="#{createEvent.organizerSurname.label}"></label>
+                    <label for="organizer-surname" th:text="#{createEventSummary.organizerSurname.label}"></label>
                     <input id="organizer-surname" class="form-control" type="text"
                            th:name="organizerSurname" th:value="*{organizerSurname}" th:readonly="true"/>
                 </div>
@@ -89,36 +89,40 @@
         </div>
 
         <div class="form-group">
-            <label for="phone" th:text="#{createEvent.organizerPhoneNumber.label}"></label>
+            <label for="phone" th:text="#{createEventSummary.organizerPhoneNumber.label}"></label>
             <input id="phone" class="form-control" type="text"
                    th:name="organizerPhoneNumber" th:value="*{organizerPhoneNumber}" th:readonly="true"/>
         </div>
         <div class="form-group">
-            <label for="email" th:text="#{createEvent.organizerEmail.label}"></label>
+            <label for="email" th:text="#{createEventSummary.organizerEmail.label}"></label>
             <input id="email" class="form-control" type="text"
                    th:name="organizerEmail" th:value="*{organizerEmail}" th:readonly="true"/>
         </div>
 
 
         <div class="form-group">
-            <label for="rodo-clause" th:text="#{createEvent.rodo.label}"></label>
+            <label for="rodo-clause" th:text="#{createEventSummary.rodo.label}"></label>
             <input id="rodo-clause" type="checkbox" name="rodoClause" th:checked="*{rodoClause}" th:readonly="true"/>
         </div>
 
-        <h3 th:text="#{createEvent.additionalServices.info}"></h3>
+        <h3 th:text="#{createEventSummary.additionalServices.info}"></h3>
         <div class="form-group">
-            <label for="promotional-campaign" th:text="#{createEvent.promotionalCampaign.label}"></label>
+            <label for="promotional-campaign" th:text="#{createEventSummary.promotionalCampaign.label}"></label>
             <input id="promotional-campaign" type="checkbox" name="promotionalCampaign"
                    th:checked="*{promotionalCampaign}" th:readonly="true"/>
         </div>
         <div class="form-group">
-            <label for="photograph" th:text="#{createEvent.promotionalCampaign.label}"></label>
+            <label for="photograph" th:text="#{createEventSummary.photograph.label}"></label>
             <input id="photograph" type="checkbox" name="photograph"
                    th:checked="*{photograph}" th:readonly="true"/>
         </div>
 
-        <button type="submit" class="btn btn-primary" th:text="#{createEvent.button.summary}">
-        </button>
+        <div class="form-group">
+            <button id="backButton" class="btn btn-danger" type="button" th:text="#{createEventSummary.button.back}">
+            </button>
+            <button type="submit" class="btn btn-primary" th:text="#{createEventSummary.button.submit}">
+            </button>
+        </div>
     </form>
 </div>
 <script type="application/javascript" th:src="@{/js/create_event_summary.js}"></script>
