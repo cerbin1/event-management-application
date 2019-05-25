@@ -24,7 +24,6 @@ public class Event {
     private String organizationName;
 
     @NotNull(message = "To pole nie może być puste!")
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dateOfTheEvent;
 
     @NotEmpty(message = "To pole nie może być puste!")
