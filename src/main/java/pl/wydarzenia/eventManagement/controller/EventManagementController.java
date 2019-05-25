@@ -33,8 +33,7 @@ public class EventManagementController {
 
     @PostMapping("wydarzenia/dodaj/podsumowanie")
     public String submitEventCreationForm(
-            Model model,
-            @Valid Event event,
+            @Valid @ModelAttribute Event event,
             BindingResult result) {
         EventValidator eventValidator = new EventValidator();
         eventValidator.validate(event, result);
