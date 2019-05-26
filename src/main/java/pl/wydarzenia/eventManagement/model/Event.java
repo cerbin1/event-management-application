@@ -44,7 +44,7 @@ public class Event {
     private String organizerSurname;
 
     @NotEmpty(message = "To pole nie może być puste!")
-    @Pattern(regexp = "(^$|[0-9]{7,10})", message = "Proszę podać poprawny numer telefonu  poprawny numer telefonu, 7-10 cyfr!")
+    @Pattern(regexp = "(^$|[0-9]{7,10})", message = "Proszę podać poprawny numer telefonu, który powinien się składać z 7-10 cyfr!")
     private String organizerPhoneNumber;
 
     @Pattern(regexp = EMAIL_REGEX, message = "Proszę podać poprawny adres email!")
