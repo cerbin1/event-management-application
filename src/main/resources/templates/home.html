@@ -43,9 +43,14 @@
                         <td th:text="${event.category}"></td>
                         <td th:text="${event.dateOfTheEvent}"></td>
                         <td>
+                        <form th:action="@{/wydarzenie/szczegoly}" method="get">
+                            <label>
+                                <input type="number" th:value="${event.id}" name="eventId" hidden="hidden"/>
+                            </label>
                             <button class="btn btn-warning"
                                     th:text="#{acceptedEventsTable.th.eventDetails.button.text}">
                             </button>
+                        </form>
                         </td>
                     </tr>
                 </th:block>

@@ -67,6 +67,15 @@ public class EventController {
         return "redirect:/";
     }
 
+    @GetMapping("wydarzenie/szczegoly")
+    public String getEventDetails(
+            Model model,
+            @RequestParam long eventId) {
+        Event event = eventService.getEventById(eventId);
+        model.addAttribute("event", event);
+        return "event_details";
+    }
+
     @ModelAttribute("eventCategories")
     public List<EventCategory> getEventCategories() {
         return eventService.getCategories();
@@ -75,5 +84,10 @@ public class EventController {
     @ModelAttribute("eventPlaces")
     public List<EventPlace> getEventPlaces() {
         return eventService.getPlaces();
+    }
+
+    @ModelAttribute("mainPageMapping")
+    public String getMainPageMapping() {
+        return "/";
     }
 }

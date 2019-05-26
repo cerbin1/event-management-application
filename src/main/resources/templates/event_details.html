@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title th:text="#{eventDetails.title}"></title>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="#{eventDetails.mainText}"></h1>
+
+    <p th:text="#{eventDetails.event.name.label}"></p>
+    <p class="font-weight-bold" th:text="${event.name}"></p>
+
+    <p th:text="#{eventDetails.event.category.label}"></p>
+    <p class="font-weight-bold" th:text="${event.category}"></p>
+
+    <p th:text="#{eventDetails.event.organizationName.label}"></p>
+    <p class="font-weight-bold" th:text="${event.organizationName}"></p>
+
+    <p th:text="#{eventDetails.event.category.dateOfTheEvent}"></p>
+    <p class="font-weight-bold" th:text="${event.dateOfTheEvent}"></p>
+
+    <p th:text="#{eventDetails.event.category.description}"></p>
+    <p class="font-weight-bold" th:text="${event.description}"></p>
+    <div class="row">
+        <a th:href="${mainPageMapping}">
+            <button type="button" class="btn btn-danger" th:text="#{eventDetails.event.backButton.text}"></button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

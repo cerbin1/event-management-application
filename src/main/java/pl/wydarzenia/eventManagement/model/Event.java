@@ -13,6 +13,8 @@ import static pl.wydarzenia.utils.StringUtils.EMAIL_REGEX;
 @NoArgsConstructor
 @Data
 public class Event {
+    private long id;
+
     @NotEmpty(message = "To pole nie może być puste!")
     @Size(min = 2, max = 30, message = "To pole musi mieć pomiędzy 2 a 30 znaków!")
     private String name;

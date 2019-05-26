@@ -45,4 +45,13 @@ public class EventServiceImpl implements EventService {
                 new EventPlace("06", "Sala komputerowa"),
                 new EventPlace("07", "Nie określono"));
     }
+
+    @Override
+    public Event getEventById(long eventId) {
+        return events
+                .stream()
+                .filter(event -> event.getId() == eventId)
+                .findFirst()
+                .orElse(null);
+    }
 }
