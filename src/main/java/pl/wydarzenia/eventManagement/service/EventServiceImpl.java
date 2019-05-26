@@ -6,79 +6,15 @@ import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
+import pl.wydarzenia.utils.test.TestHelper;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
-    private List<Event> events = Arrays.asList(
-            new Event("Nazwa 1",
-                    EventStatus.NEW,
-                    "01",
-                    "01",
-                    "Organizator 1",
-                    new Date(1000),
-                    "Opis 1",
-                    15,
-                    "komentarz 1",
-                    "Jan",
-                    "Kowalski",
-                    "123456789",
-                    "jan@kowalski.pl",
-                    true,
-                    false,
-                    false),
-            new Event("Nazwa 2",
-                    EventStatus.NEW,
-                    "01",
-                    "01",
-                    "Organizator 1",
-                    new Date(1000),
-                    "Opis 1",
-                    15,
-                    "komentarz 1",
-                    "Jan",
-                    "Kowalski",
-                    "123456789",
-                    "jan@kowalski.pl",
-                    true,
-                    false,
-                    false),
-            new Event("Nazwa 3",
-                    EventStatus.ACCEPTED,
-                    "01",
-                    "01",
-                    "Organizator 1",
-                    new Date(1000),
-                    "Opis 1",
-                    15,
-                    "komentarz 1",
-                    "Jan",
-                    "Kowalski",
-                    "123456789",
-                    "jan@kowalski.pl",
-                    true,
-                    false,
-                    false),
-            new Event("Nazwa 4",
-                    EventStatus.ACCEPTED,
-                    "01",
-                    "01",
-                    "Organizator 1",
-                    new Date(1000),
-                    "Opis 1",
-                    15,
-                    "komentarz 1",
-                    "Jan",
-                    "Kowalski",
-                    "123456789",
-                    "jan@kowalski.pl",
-                    true,
-                    false,
-                    false));
+    private List<Event> events = TestHelper.getTestEvents();
 
     @Autowired
     public List<Event> getAcceptedEvents() {

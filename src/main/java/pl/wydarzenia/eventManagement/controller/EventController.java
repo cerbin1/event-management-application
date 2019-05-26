@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static pl.wydarzenia.utils.test.TestHelper.getSingleTestEvent;
+
 @Controller
 public class EventController {
     private final EventService eventService;
@@ -39,7 +41,7 @@ public class EventController {
 
     @GetMapping("wydarzenia/dodaj")
     public String getEventCreationForm(Model model) {
-        model.addAttribute("event", new Event());
+        model.addAttribute("event", getSingleTestEvent());
         return "create_event";
     }
 
