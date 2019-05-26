@@ -1,12 +1,16 @@
 package pl.wydarzenia.eventManagement.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
 import java.util.Date;
 
 import static pl.wydarzenia.utils.StringUtils.EMAIL_REGEX;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Event {
     @NotEmpty(message = "To pole nie może być puste!")

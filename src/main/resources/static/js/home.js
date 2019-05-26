@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("ready");
     $("#locales").change(function () {
         var selectedOption = $('#locales').val();
         if (selectedOption !== '') {
@@ -7,4 +6,10 @@ $(document).ready(function () {
             window.location("/");
         }
     });
+
+    initializeAcceptedEventsDatatable();
+
+    function initializeAcceptedEventsDatatable() {
+        $('#acceptedEventsTable').DataTable();
+    }
 });

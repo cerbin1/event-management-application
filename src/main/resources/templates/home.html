@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
     <title th:text="#{home.pageTitle}"></title>
 </head>
@@ -20,6 +23,36 @@
                 <button class="btn btn-primary" type="submit" th:text="#{home.addEvent.button}"></button>
             </form>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table id="acceptedEventsTable" class="display">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventName}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventCategory}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventDate}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.actionButtons}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="event : ${acceptedEvents}">
+                    <tr>
+                        <td th:text="${event.name}"></td>
+                        <td th:text="${event.category}"></td>
+                        <td th:text="${event.dateOfTheEvent}"></td>
+                        <td>
+                            <button class="btn btn-warning"
+                                    th:text="#{acceptedEventsTable.th.eventDetails.button.text}">
+                            </button>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 <script type="application/javascript" th:src="@{/js/home.js}"></script>
