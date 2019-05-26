@@ -15,7 +15,7 @@
 <div class="container">
     <h1 th:text="#{createEventSummary.mainText}"></h1>
 
-    <form action="#" th:action="@{/wydarzenie/dodaj/wyslij}" th:object="${event}" method="post">
+    <form action="#" th:action="@{/wydarzenia/dodaj/wyslij}" th:object="${event}" method="post">
         <h3 th:text="#{createEventSummary.eventInfo}"></h3>
         <div class="form-group">
             <label for="event-name" th:text="#{createEventSummary.eventName.label}"></label>

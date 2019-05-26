@@ -28,3 +28,4 @@ HELP.md
 ### VS Code ###
 .vscode/
 notes.txt
+src/main/java/pl/wydarzenia/utils/test/TestHelper.java

@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
@@ -57,7 +54,7 @@ public class EventController {
         return "create_event_summary";
     }
 
-    @PostMapping("/wydarzenie/dodaj/wyslij")
+    @PostMapping("wydarzenia/dodaj/wyslij")
     public String submit(
             @Valid @ModelAttribute Event event,
             BindingResult result) {
