@@ -1,7 +1,6 @@
 package pl.wydarzenia.eventManagement.model;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -13,6 +12,8 @@ public class Event {
     @NotEmpty(message = "To pole nie może być puste!")
     @Size(min = 2, max = 30, message = "To pole musi mieć pomiędzy 2 a 30 znaków!")
     private String name;
+
+    private EventStatus status;
 
     @NotEmpty(message = "To pole nie może być puste!")
     private String category;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
+import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
 import pl.wydarzenia.eventManagement.validator.EventValidator;
 
@@ -62,6 +63,7 @@ public class EventManagementController {
             return "create_event";
         }
 
+        event.setStatus(EventStatus.NEW);
         // TODOO: save
         return "redirect:/";
     }
