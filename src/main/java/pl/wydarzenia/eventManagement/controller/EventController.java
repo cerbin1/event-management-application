@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class EventManagementController {
+public class EventController {
     private final EventService eventService;
 
     @InitBinder
@@ -33,7 +33,7 @@ public class EventManagementController {
     }
 
     @Autowired
-    public EventManagementController(EventService eventService) {
+    public EventController(EventService eventService) {
         this.eventService = eventService;
     }
 
