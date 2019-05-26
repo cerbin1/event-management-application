@@ -1,4 +1,4 @@
-package pl.wydarzenia.eventManagement.service;
+package pl.wydarzenia.eventManagement.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
+import pl.wydarzenia.eventManagement.service.EventService;
 import pl.wydarzenia.utils.test.TestHelper;
 
 import java.util.Arrays;
