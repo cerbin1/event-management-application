@@ -72,6 +72,17 @@
                       th:name="comments" th:text="*{comments}"></textarea>
         </div>
 
+        <h3>Zmień status </h3>
+        <div class="form-group">
+            <label for="event-status" th:text="#{eventsManagementEvent.eventStatus.label}"></label>
+            <select class="form-control" id="event-status" th:field="*{status}">
+                <th:block th:each="status : ${eventStatuses}">
+                    <option th:selected="${event.status==status.value}" th:text="${status.name}"
+                            th:value="${status.value}"></option>
+                </th:block>
+            </select>
+        </div>
+
         <div class="form-group">
             <button id="backButton" class="btn btn-danger" type="button"
                     th:text="#{eventDetails.event.cancelButton.text}">

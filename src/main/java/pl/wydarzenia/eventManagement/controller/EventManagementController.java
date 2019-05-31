@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
+import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
 
 import java.util.List;
@@ -52,5 +53,9 @@ public class EventManagementController {
     @ModelAttribute("eventPlaces")
     public List<EventPlace> getEventPlaces() {
         return eventService.getPlaces();
+    }
+    @ModelAttribute("event0Statuses")
+    public List<EventStatus> getEventStatuses() {
+        return eventService.getStatuses();
     }
 }

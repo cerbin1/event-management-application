@@ -21,7 +21,7 @@ public class EventServiceImpl implements EventService {
     public List<Event> getAcceptedEvents() {
         return events
                 .stream()
-                .filter(event -> event.getStatus().equals(EventStatus.Zaakceptowany))
+                .filter(event -> event.getStatus().equals(EventStatus.NEW))
                 .collect(Collectors.toList());
     }
 
@@ -45,6 +45,14 @@ public class EventServiceImpl implements EventService {
                 new EventPlace("05", "Labolatorium"),
                 new EventPlace("06", "Sala komputerowa"),
                 new EventPlace("07", "Nie określono"));
+    }
+
+    @Autowired
+    public List<EventStatus> getStatuses() {
+        return Arrays.asList(
+                new EventStatus("01", "Nowy"),
+                new EventStatus("02", "Zaakceptowany"),
+                new EventStatus("03", "Odrzucony"));
     }
 
     @Override

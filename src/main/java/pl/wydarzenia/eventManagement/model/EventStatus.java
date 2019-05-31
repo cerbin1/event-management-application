@@ -1,16 +1,21 @@
 package pl.wydarzenia.eventManagement.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-public enum EventStatus {
-    Nowy("01"), Zaakceptowany("02"), Odrzucony("03");
+@AllArgsConstructor
+public class EventStatus {
+    public static final String NEW = "01";
+    public static final String ACCEPTED = "02";
+    public static final String REJECTED = "03";
 
     @Getter
     @Setter
     private String value;
 
-    EventStatus(String value) {
-        this.value = value;
-    }
+    @Getter
+    @Setter
+    private String name;
+
 }

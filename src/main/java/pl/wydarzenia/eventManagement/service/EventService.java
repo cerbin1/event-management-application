@@ -3,6 +3,7 @@ package pl.wydarzenia.eventManagement.service;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
+import pl.wydarzenia.eventManagement.model.EventStatus;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public interface EventService {
     List<EventCategory> getCategories();
 
     List<EventPlace> getPlaces();
+
+    List<EventStatus> getStatuses();
 
     Event getEventById(long eventId);
 
