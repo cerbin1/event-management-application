@@ -54,7 +54,7 @@ public class EventManagementController {
     public List<EventPlace> getEventPlaces() {
         return eventService.getPlaces();
     }
-    @ModelAttribute("event0Statuses")
+    @ModelAttribute("eventStatuses")
     public List<EventStatus> getEventStatuses() {
         return eventService.getStatuses();
     }
