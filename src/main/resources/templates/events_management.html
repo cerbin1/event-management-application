@@ -32,14 +32,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="event : ${newEvents}">
+                <th:block th:each="event : ${events}">
                     <tr>
                         <td th:text="${event.name}"></td>
                         <td th:text="${event.category}"></td>
                         <td th:text="${event.dateOfTheEvent}"></td>
                         <td th:text="${event.status}"></td>
                         <td>
-                            <form th:action="@{/wydarzenie/szczegoly}" method="get">
+                            <form th:action="@{/zarzadzanieWydarzeniami/wydarzenie}" method="get">
                                 <label>
                                     <input type="number" th:value="${event.id}" name="eventId" hidden="hidden"/>
                                 </label>
