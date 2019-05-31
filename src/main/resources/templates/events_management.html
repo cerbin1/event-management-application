@@ -11,12 +11,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
-    <title th:text="#{eventDetails.title}"></title>
+    <title th:text="#{eventManagement.title}"></title>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <h1 class="col-12 text-center">Wydarzenia - panel administratora</h1>
+        <h1 class="col-12 text-center" th:text="#{eventManagement.mainText}"></h1>
     </div>
 
     <div class="row">
@@ -24,11 +24,11 @@
             <table id="newEventsTable" class="display">
                 <thead>
                 <tr>
-                    <th scope="col" th:text="#{acceptedEventsTable.th.eventName}"></th>
-                    <th scope="col" th:text="#{acceptedEventsTable.th.eventCategory}"></th>
-                    <th scope="col" th:text="#{acceptedEventsTable.th.eventDate}"></th>
-                    <th scope="col" th:text="#{acceptedEventsTable.th.eventDate}"></th>
-                    <th scope="col" th:text="#{acceptedEventsTable.th.actionButtons}"></th>
+                    <th scope="col" th:text="#{eventManagement.events.table.th.eventName}"></th>
+                    <th scope="col" th:text="#{eventManagement.events.table.th.eventCategory}"></th>
+                    <th scope="col" th:text="#{eventManagement.events.table.th.eventDate}"></th>
+                    <th scope="col" th:text="#{eventManagement.events.table.th.eventStatus}"></th>
+                    <th scope="col" th:text="#{eventManagement.events.table.th.actionButtons}"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,8 @@
                                 <label>
                                     <input type="number" th:value="${event.id}" name="eventId" hidden="hidden"/>
                                 </label>
-                                <button class="btn btn-warning">Zarządzaj wydarzeniem</button>
+                                <button class="btn btn-warning"
+                                        th:text="#{eventManagement.events.eventDetails.button.text}"></button>
                             </form>
                         </td>
                     </tr>

@@ -7,96 +7,79 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title th:text="#{test}"></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title th:text="#{eventsManagementEvent.title}"></title>
 </head>
 <body>
+
 <div class="container">
-    <!DOCTYPE html>
-    <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <h1 th:text="#{eventsManagementEvent.mainText}"></h1>
 
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <form action="#" th:action="@{/zarzadzanieWydarzeniami/wydarzenie/zapisz}" th:object="${event}" method="post">
+        <h3 th:text="#{eventsManagementEvent.eventInfo}"></h3>
+        <div class="form-group">
+            <label for="event-name" th:text="#{eventsManagementEvent.eventName.label}"></label>
+            <input id="event-name" class="form-control" type="text"
+                   th:name="name" th:value="*{name}"/>
+        </div>
+        <div class="form-group">
+            <label for="event-category" th:text="#{eventsManagementEvent.eventCategory.label}"></label>
+            <select id="event-category" class="form-control" th:field="*{category}">
+                <th:block th:each="category : ${eventCategories}">
+                    <option th:selected="${event.category==category.value}" th:value="${category.value}"
+                            th:text="${category.name}"></option>
+                </th:block>
+            </select>
+        </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <title th:text="#{test}"></title>
-    </head>
-    <body>
+        <div class="form-group">
+            <label for="event-place" th:text="#{eventsManagementEvent.eventPlace.label}"></label>
+            <select id="event-place" class="form-control" th:field="*{place}">
+                <th:block th:each="place : ${eventPlaces}">
+                    <option th:selected="${event.place==place.value}" th:value="${place.value}"
+                            th:text="${place.name}"></option>
+                </th:block>
+            </select>
+        </div>
 
-    <div class="container">
-        <h1 th:text="#{test}"></h1>
+        <div class="form-group">
+            <label for="organization-name" th:text="#{eventsManagementEvent.organizationName.label}"></label>
+            <input id="organization-name" class="form-control" type="text"
+                   th:name="organizationName" th:value="*{organizationName}"/>
+        </div>
 
-        <form action="#" th:action="@{/zarzadzanieWydarzeniami/wydarzenie/zapisz}" th:object="${event}" method="post">
-            <h3 th:text="#{test}"></h3>
-            <div class="form-group">
-                <label for="event-name" th:text="#{test}"></label>
-                <input id="event-name" class="form-control" type="text"
-                       th:name="name" th:value="*{name}"/>
-            </div>
-            <div class="form-group">
-                <label for="event-category" th:text="#{test}"></label>
-                <select id="event-category" class="form-control" th:field="*{category}">
-                    <th:block th:each="category : ${eventCategories}">
-                        <option th:selected="${event.category==category.value}" th:value="${category.value}"
-                                th:text="${category.name}"></option>
-                    </th:block>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="date-of-event" th:text="#{eventsManagementEvent.eventDate.label}"></label>
+            <input id="date-of-event" class="form-control"
+                   th:name="dateOfTheEvent" th:value="*{#dates.format(dateOfTheEvent, 'yyyy-mm-dd')}"
+            />
+        </div>
 
-            <div class="form-group">
-                <label for="event-place" th:text="#{test}"></label>
-                <select id="event-place" class="form-control" th:field="*{place}">
-                    <th:block th:each="place : ${eventPlaces}">
-                        <option th:selected="${event.place==place.value}" th:value="${place.value}"
-                                th:text="${place.name}"></option>
-                    </th:block>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="description" th:text="#{eventsManagementEvent.eventDescription.label}"></label>
+            <input id="description" class="form-control" type="text"
+                   th:name="description" th:value="*{description}"/>
+        </div>
 
-            <div class="form-group">
-                <label for="organization-name" th:text="#{test}"></label>
-                <input id="organization-name" class="form-control" type="text"
-                       th:name="organizationName" th:value="*{organizationName}"/>
-            </div>
+        <div class="form-group">
+            <label for="number-of-participants" th:text="#{eventsManagementEvent.numberOfParticipants.label}"></label>
+            <input id="number-of-participants" class="form-control" type="text"
+                   th:name="plannedNumberOfParticipants" th:value="*{plannedNumberOfParticipants}"/>
+        </div>
+        <div class="form-group">
+            <label for="comments" th:text="#{eventsManagementEvent.comments.label}"></label>
+            <textarea id="comments" class="form-control"
+                      th:name="comments" th:text="*{comments}"></textarea>
+        </div>
 
-            <div class="form-group">
-                <label for="date-of-event" th:text="#{test}"></label>
-                <input id="date-of-event" class="form-control"
-                       th:name="dateOfTheEvent" th:value="*{#dates.format(dateOfTheEvent, 'yyyy-mm-dd')}"
-                      />
-            </div>
-
-            <div class="form-group">
-                <label for="description" th:text="#{test}"></label>
-                <input id="description" class="form-control" type="text"
-                       th:name="description" th:value="*{description}"/>
-            </div>
-
-            <div class="form-group">
-                <label for="number-of-participants" th:text="#{test}"></label>
-                <input id="number-of-participants" class="form-control" type="text"
-                       th:name="plannedNumberOfParticipants" th:value="*{plannedNumberOfParticipants}"/>
-            </div>
-            <div class="form-group">
-                <label for="comments" th:text="#{test}"></label>
-                <textarea id="comments" class="form-control"
-                          th:name="comments" th:text="*{comments}"></textarea>
-            </div>
-
-            <div class="form-group">
-                <button id="backButton" class="btn btn-danger" type="button" th:text="#{test}">
-                </button>
-                <button type="submit" class="btn btn-primary" th:text="#{test}">
-                </button>
-            </div>
-        </form>
-    </div>
-<!--    <script type="application/javascript" th:src="@{/js/create_event_summary.js}"></script>-->
-    </body>
-    </html>
-
+        <div class="form-group">
+            <button id="backButton" class="btn btn-danger" type="button"
+                    th:text="#{eventDetails.event.cancelButton.text}">
+            </button>
+            <button type="submit" class="btn btn-primary" th:text="#{eventsManagementEvent.saveChanges.button.text}">
+            </button>
+        </div>
+    </form>
 </div>
 </body>
 </html>
