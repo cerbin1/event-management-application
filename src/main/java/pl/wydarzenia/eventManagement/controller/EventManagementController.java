@@ -1,12 +1,11 @@
 package pl.wydarzenia.eventManagement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
@@ -45,6 +44,12 @@ public class EventManagementController {
         return "redirect:/wydarzenia/zarzadzanie";
     }
 
+    @DeleteMapping("/zarzadzanieWydarzeniami/wydarzenie/usun")
+    public ResponseEntity deleteEvent(@RequestParam long eventId) {
+        // TODO: delete
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @ModelAttribute("eventCategories")
     public List<EventCategory> getEventCategories() {
         return eventService.getCategories();
@@ -54,6 +59,7 @@ public class EventManagementController {
     public List<EventPlace> getEventPlaces() {
         return eventService.getPlaces();
     }
+
     @ModelAttribute("eventStatuses")
     public List<EventStatus> getEventStatuses() {
         return eventService.getStatuses();

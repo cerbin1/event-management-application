@@ -82,15 +82,27 @@
                 </th:block>
             </select>
         </div>
+        <div class="row">
+            <div class="form-group">
+                <label>
+                    <input hidden="hidden" id="eventId" th:value="${event.id}"/>
+                </label>
+                <button class="btn btn-danger" id="deleteEvent" type="button" value="save">Usuń to wydarzenie</button>
+            </div>
+        </div>
 
-        <div class="form-group">
-            <button id="backButton" class="btn btn-danger" type="button"
-                    th:text="#{eventDetails.event.cancelButton.text}">
-            </button>
-            <button type="submit" class="btn btn-primary" th:text="#{eventsManagementEvent.saveChanges.button.text}">
-            </button>
+        <div class="row">
+            <div class="form-group">
+                <button class="btn btn-warning" id="backButton" th:text="#{eventDetails.event.cancelButton.text}"
+                        type="button">
+                </button>
+                <button class="btn btn-primary" th:text="#{eventsManagementEvent.saveChanges.button.text}"
+                        type="submit">
+                </button>
+            </div>
         </div>
     </form>
 </div>
+<script th:src="@{/js/events_management_event.js}" type="application/javascript"></script>
 </body>
 </html>
