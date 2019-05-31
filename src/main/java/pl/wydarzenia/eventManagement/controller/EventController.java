@@ -62,7 +62,7 @@ public class EventController {
             return "create_event";
         }
 
-        event.setStatus(EventStatus.NEW);
+        event.setStatus(EventStatus.Nowy);
         // TODOO: save
         return "redirect:/";
     }

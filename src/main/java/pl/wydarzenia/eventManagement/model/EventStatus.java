@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public enum EventStatus {
-    NEW("01"), ACCEPTED("02"), REJECTED("03");
+    Nowy("01"), Zaakceptowany("02"), Odrzucony("03");
 
     @Getter
     @Setter

@@ -21,7 +21,7 @@ public class EventServiceImpl implements EventService {
     public List<Event> getAcceptedEvents() {
         return events
                 .stream()
-                .filter(event -> event.getStatus().equals(EventStatus.ACCEPTED))
+                .filter(event -> event.getStatus().equals(EventStatus.Zaakceptowany))
                 .collect(Collectors.toList());
     }
 
@@ -54,5 +54,10 @@ public class EventServiceImpl implements EventService {
                 .filter(event -> event.getId() == eventId)
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Event> getAllEvents() {
+        return events;
     }
 }

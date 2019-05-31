@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+    <title th:text="#{eventDetails.title}"></title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1 class="col-12 text-center">Wydarzenia - panel administratora</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table id="newEventsTable" class="display">
+                <thead>
+                <tr>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventName}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventCategory}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventDate}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.eventDate}"></th>
+                    <th scope="col" th:text="#{acceptedEventsTable.th.actionButtons}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="event : ${newEvents}">
+                    <tr>
+                        <td th:text="${event.name}"></td>
+                        <td th:text="${event.category}"></td>
+                        <td th:text="${event.dateOfTheEvent}"></td>
+                        <td th:text="${event.status}"></td>
+                        <td>
+                            <form th:action="@{/wydarzenie/szczegoly}" method="get">
+                                <label>
+                                    <input type="number" th:value="${event.id}" name="eventId" hidden="hidden"/>
+                                </label>
+                                <button class="btn btn-warning">Zarządzaj wydarzeniem</button>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" th:src="@{/js/events_management.js}"></script>
+</body>
+</html>
