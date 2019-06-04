@@ -9,16 +9,21 @@ $(document).ready(function () {
         window.history.back();
     });
 
-    $('#deleteEvent').on('click', function () {
+
+    $('#deleteEventButton').on('click', function () {
         $.ajax({
-            url: '/zarzadzanieWydarzeniami/wydarzenie/usun/TODO',
+            url: '/zarzadzanieWydarzeniami/wydarzenie/usun',
             type: 'delete',
             data: {
                 id: $('#eventId').val()
             },
-            success: function () {
+            success: [function () {
                 window.location.replace('/wydarzenia/zarzadzanie')
-            }
+            }],
+            error: [function () {
+                $('#deleteEvent').modal('hide');
+                alert("Nie udało się usunąć wydarzenia");
+            }]
         });
     })
 });

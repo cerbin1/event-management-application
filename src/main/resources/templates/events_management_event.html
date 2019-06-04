@@ -8,6 +8,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title th:text="#{eventsManagementEvent.title}"></title>
 </head>
 <body>
@@ -162,24 +165,42 @@
                 <label>
                     <input hidden="hidden" id="eventId" th:value="${event.id}"/>
                 </label>
-                <button class="btn btn-danger" id="deleteEvent"
-                        th:text="#{eventsManagementEvent.event.deleteEvent.text}" type="button"
-                        value="save"></button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
                 <button class="btn btn-warning" id="backButton"
                         th:text="#{eventsManagementEvent.event.cancelButton.text}"
                         type="button">
                 </button>
+                <button class="btn btn-danger" data-target="#deleteEvent" data-toggle="modal"
+                        th:text="#{eventsManagementEvent.event.deleteEvent.text}" type="button"></button>
                 <button class="btn btn-primary" th:text="#{eventsManagementEvent.saveChanges.button.text}"
                         type="submit">
                 </button>
             </div>
         </div>
     </form>
+</div>
+
+<div aria-hidden="true" aria-labelledby="deleteEventModalLabel" class="modal fade" id="deleteEvent" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteEventModalLabel" th:text="#{eventsManagementEvent.modal.title}"></h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span th:text="#{eventsManagementEvent.modal.body}"></span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal" th:text="#{eventsManagementEvent.modal.cancel.button.text}"
+                        type="button">
+                </button>
+                <button class="btn btn-danger" id="deleteEventButton" th:text="#{eventsManagementEvent.modal.confirmDelete.button.text}"
+                        type="button"></button>
+            </div>
+        </div>
+    </div>
 </div>
 <script th:src="@{/js/events_management_event.js}" type="application/javascript"></script>
 </body>
