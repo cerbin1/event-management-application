@@ -50,9 +50,8 @@
 
         <div class="form-group">
             <label for="date-of-event" th:text="#{createEventSummary.eventDate.label}"></label>
-            <input id="date-of-event" class="form-control"
-                   th:name="dateOfTheEvent" th:value="*{#dates.format(dateOfTheEvent, 'yyyy-mm-dd')}"
-                   th:readonly="true"/>
+            <input class="form-control" id="date-of-event" th:name="dateOfTheEvent"
+                   th:readonly="true" th:value="*{dateOfTheEvent}"/>
         </div>
 
         <div class="form-group">

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
-import java.util.Date;
 
 import static pl.wydarzenia.utils.StringUtils.EMAIL_REGEX;
 
@@ -31,7 +30,7 @@ public class Event {
     private String organizationName;
 
     @NotNull(message = "To pole nie może być puste!")
-    private Date dateOfTheEvent;
+    private String dateOfTheEvent;
 
     @NotEmpty(message = "To pole nie może być puste!")
     private String description;

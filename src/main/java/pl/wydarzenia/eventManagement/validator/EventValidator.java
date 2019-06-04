@@ -7,6 +7,8 @@ import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
 
+import static pl.wydarzenia.utils.StringUtils.isValidDate;
+
 @Component
 public class EventValidator implements Validator {
     @Override
@@ -30,6 +32,11 @@ public class EventValidator implements Validator {
         String place = event.getPlace();
         if (place != null && !EventPlace.isValid(place)) {
             errors.rejectValue("place", "createEvent.validation.place.message");
+        }
+
+        String dateOfTheEvent = event.getDateOfTheEvent();
+        if (dateOfTheEvent != null && !isValidDate(dateOfTheEvent)) {
+            errors.rejectValue("dateOfTheEvent", "createEvent.validation.dateOfTheEvent");
         }
     }
 }

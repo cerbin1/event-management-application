@@ -56,7 +56,8 @@
         </div>
         <div class="form-group">
             <label for="date-of-event" th:text="#{createEvent.eventDate.label}"></label>
-            <input id="date-of-event" class="form-control" type="date" th:field="*{dateOfTheEvent}"/>
+            <input class="form-control" id="date-of-event" th:field="*{dateOfTheEvent}" th:placeholder="#{createEvent.date.format}"
+                   type="text"/>
             <div th:if="${#fields.hasErrors('dateOfTheEvent')}" class="alert alert-danger">
                 <span th:errors="*{dateOfTheEvent}"></span>
             </div>
