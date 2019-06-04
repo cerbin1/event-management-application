@@ -51,8 +51,7 @@
         <div class="form-group">
             <label for="date-of-event" th:text="#{eventsManagementEvent.eventDate.label}"></label>
             <input id="date-of-event" class="form-control"
-                   th:name="dateOfTheEvent" th:value="*{#dates.format(dateOfTheEvent, 'yyyy-mm-dd')}"
-            />
+                   th:field="*{dateOfTheEvent}" th:name="dateOfTheEvent"/>
         </div>
 
         <div class="form-group">
@@ -72,7 +71,58 @@
                       th:name="comments" th:text="*{comments}"></textarea>
         </div>
 
-        <h3>Zmień status </h3>
+        <h3 th:text="#{eventsManagementEvent.organizer.info}"></h3>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label for="organizer-name" th:text="#{eventsManagementEvent.organizerName.label}"></label>
+                    <input class="form-control" id="organizer-name" th:field="*{organizerName}" type="text"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerName')}">
+                        <span th:errors="*{organizerName}"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="organizer-surname" th:text="#{eventsManagementEvent.organizerSurname.label}"></label>
+                    <input class="form-control" id="organizer-surname" th:field="*{organizerSurname}" type="text"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerSurname')}">
+                        <span th:errors="*{organizerSurname}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" th:text="#{eventsManagementEvent.organizerPhoneNumber.label}"></label>
+            <input class="form-control" id="phone" th:field="*{organizerPhoneNumber}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerPhoneNumber')}">
+                <span th:errors="*{organizerPhoneNumber}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" th:text="#{eventsManagementEvent.organizerEmail.label}"></label>
+            <input class="form-control" id="email" th:field="*{organizerEmail}" type="email"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerEmail')}">
+                <span th:errors="*{organizerEmail}"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rodo-clause" th:text="#{eventsManagementEvent.rodo.label}"></label>
+            <input id="rodo-clause" name="rodoClause" th:checked="*{rodoClause}" th:readonly="true" type="checkbox"/>
+        </div>
+
+        <h3 th:text="#{eventsManagementEvent.additionalServices.info}"></h3>
+        <div class="form-group">
+            <label for="promotional-campaign" th:text="#{eventsManagementEvent.promotionalCampaign.label}"></label>
+            <input id="promotional-campaign" name="promotionalCampaign" th:checked="*{promotionalCampaign}"
+                   th:readonly="true" type="checkbox"/>
+        </div>
+        <div class="form-group">
+            <label for="photograph" th:text="#{eventsManagementEvent.photograph.label}"></label>
+            <input id="photograph" name="photograph" th:checked="*{photograph}"
+                   th:readonly="true" type="checkbox"/>
+        </div>
+
+        <h3 th:text="#{eventsManagementEvent.eventStatus.info}"></h3>
         <div class="form-group">
             <label for="event-status" th:text="#{eventsManagementEvent.eventStatus.label}"></label>
             <select class="form-control" id="event-status" th:field="*{status}">
@@ -87,13 +137,15 @@
                 <label>
                     <input hidden="hidden" id="eventId" th:value="${event.id}"/>
                 </label>
-                <button class="btn btn-danger" id="deleteEvent" type="button" value="save">Usuń to wydarzenie</button>
+                <button class="btn btn-danger" id="deleteEvent" th:text="#{eventsManagementEvent.event.deleteEvent.text}" type="button"
+                        value="save"></button>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
-                <button class="btn btn-warning" id="backButton" th:text="#{eventDetails.event.cancelButton.text}"
+                <button class="btn btn-warning" id="backButton"
+                        th:text="#{eventsManagementEvent.event.cancelButton.text}"
                         type="button">
                 </button>
                 <button class="btn btn-primary" th:text="#{eventsManagementEvent.saveChanges.button.text}"

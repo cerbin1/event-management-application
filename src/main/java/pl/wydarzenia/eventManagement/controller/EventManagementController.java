@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
@@ -12,6 +13,7 @@ import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,8 +41,13 @@ public class EventManagementController {
     }
 
     @PostMapping("/zarzadzanieWydarzeniami/wydarzenie/zapisz")
-    public String saveEventEdit(Event event) {
+    public String saveEventEdit(
+            @Valid @ModelAttribute Event event,
+            BindingResult result) {
         // TODO: save
+        if (result.hasErrors()) {
+            return "events_management_event";
+        }
         return "redirect:/wydarzenia/zarzadzanie";
     }
 
