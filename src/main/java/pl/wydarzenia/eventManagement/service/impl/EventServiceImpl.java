@@ -21,7 +21,7 @@ public class EventServiceImpl implements EventService {
     public List<Event> getAcceptedEvents() {
         return events
                 .stream()
-                .filter(event -> event.getStatus().equals(EventStatus.NEW))
+                .filter(event -> event.getStatus().equals(EventStatus.ACCEPTED))
                 .collect(Collectors.toList());
     }
 

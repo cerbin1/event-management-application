@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     $('#deleteEvent').on('click', function () {
         $.ajax({
-            url: '/zarzadzanieWydarzeniami/wydarzenie/usun/TODOO',
+            url: '/zarzadzanieWydarzeniami/wydarzenie/usun/TODO',
             type: 'delete',
             params: {
                 eventId: $('#eventId').val()

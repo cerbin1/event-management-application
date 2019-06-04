@@ -56,7 +56,11 @@ public class EventController {
         }
 
         event.setStatus(EventStatus.NEW);
-        // TODOO: save
+
+        List<Event> allEvents = eventService.getAllEvents();
+        event.setId(allEvents.size() + 1);
+        allEvents.add(event);
+        // TODO: save
         return "redirect:/";
     }
 

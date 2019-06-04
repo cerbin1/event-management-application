@@ -16,11 +16,16 @@
     <h1 th:text="#{eventsManagementEvent.mainText}"></h1>
 
     <form action="#" th:action="@{/zarzadzanieWydarzeniami/wydarzenie/zapisz}" th:object="${event}" method="post">
+        <input th:name="id" th:value="*{id}" type="hidden"/>
+
         <h3 th:text="#{eventsManagementEvent.eventInfo}"></h3>
         <div class="form-group">
             <label for="event-name" th:text="#{eventsManagementEvent.eventName.label}"></label>
             <input id="event-name" class="form-control" type="text"
                    th:name="name" th:value="*{name}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+                <span th:errors="*{name}"></span>
+            </div>
         </div>
         <div class="form-group">
             <label for="event-category" th:text="#{eventsManagementEvent.eventCategory.label}"></label>
@@ -30,6 +35,9 @@
                             th:text="${category.name}"></option>
                 </th:block>
             </select>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('category')}">
+                <span th:errors="*{category}"></span>
+            </div>
         </div>
 
         <div class="form-group">
@@ -40,35 +48,52 @@
                             th:text="${place.name}"></option>
                 </th:block>
             </select>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('place')}">
+                <span th:errors="*{place}"></span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="organization-name" th:text="#{eventsManagementEvent.organizationName.label}"></label>
             <input id="organization-name" class="form-control" type="text"
                    th:name="organizationName" th:value="*{organizationName}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizationName')}">
+                <span th:errors="*{organizationName}"></span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="date-of-event" th:text="#{eventsManagementEvent.eventDate.label}"></label>
             <input id="date-of-event" class="form-control"
                    th:field="*{dateOfTheEvent}" th:name="dateOfTheEvent"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('dateOfTheEvent')}">
+                <span th:errors="*{dateOfTheEvent}"></span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="description" th:text="#{eventsManagementEvent.eventDescription.label}"></label>
-            <input id="description" class="form-control" type="text"
-                   th:name="description" th:value="*{description}"/>
+            <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('description')}">
+                <span th:errors="*{description}"></span>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="number-of-participants" th:text="#{eventsManagementEvent.numberOfParticipants.label}"></label>
             <input id="number-of-participants" class="form-control" type="text"
                    th:name="plannedNumberOfParticipants" th:value="*{plannedNumberOfParticipants}"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('plannedNumberOfParticipants')}">
+                <span th:errors="*{plannedNumberOfParticipants}"></span>
+            </div>
         </div>
         <div class="form-group">
             <label for="comments" th:text="#{eventsManagementEvent.comments.label}"></label>
             <textarea id="comments" class="form-control"
                       th:name="comments" th:text="*{comments}"></textarea>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('comments')}">
+                <span th:errors="*{comments}"></span>
+            </div>
         </div>
 
         <h3 th:text="#{eventsManagementEvent.organizer.info}"></h3>
@@ -137,7 +162,8 @@
                 <label>
                     <input hidden="hidden" id="eventId" th:value="${event.id}"/>
                 </label>
-                <button class="btn btn-danger" id="deleteEvent" th:text="#{eventsManagementEvent.event.deleteEvent.text}" type="button"
+                <button class="btn btn-danger" id="deleteEvent"
+                        th:text="#{eventsManagementEvent.event.deleteEvent.text}" type="button"
                         value="save"></button>
             </div>
         </div>

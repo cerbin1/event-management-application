@@ -44,10 +44,12 @@ public class EventManagementController {
     public String saveEventEdit(
             @Valid @ModelAttribute Event event,
             BindingResult result) {
-        // TODO: save
         if (result.hasErrors()) {
             return "events_management_event";
         }
+        // TODO: save
+        int eventId = (int) event.getId();
+        eventService.getAllEvents().set(eventId - 1, event);
         return "redirect:/wydarzenia/zarzadzanie";
     }
 
