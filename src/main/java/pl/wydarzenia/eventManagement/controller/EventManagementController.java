@@ -34,7 +34,7 @@ public class EventManagementController {
     @GetMapping("/zarzadzanieWydarzeniami/wydarzenie")
     public String getEventManagementView(
             Model model,
-            @RequestParam long eventId) {
+            @RequestParam("id") long eventId) {
         Event event = eventService.getEventById(eventId);
         model.addAttribute("event", event);
         return "events_management_event";
@@ -54,7 +54,7 @@ public class EventManagementController {
     }
 
     @DeleteMapping("/zarzadzanieWydarzeniami/wydarzenie/usun")
-    public ResponseEntity deleteEvent(@RequestParam long eventId) {
+    public ResponseEntity deleteEvent(@RequestParam("id") long eventId) {
         // TODO: delete
         return new ResponseEntity(HttpStatus.OK);
     }

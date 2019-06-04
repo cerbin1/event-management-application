@@ -13,8 +13,8 @@ $(document).ready(function () {
         $.ajax({
             url: '/zarzadzanieWydarzeniami/wydarzenie/usun/TODO',
             type: 'delete',
-            params: {
-                eventId: $('#eventId').val()
+            data: {
+                id: $('#eventId').val()
             },
             success: function () {
                 window.location.replace('/wydarzenia/zarzadzanie')

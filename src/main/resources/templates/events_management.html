@@ -41,7 +41,7 @@
                         <td>
                             <form th:action="@{/zarzadzanieWydarzeniami/wydarzenie}" method="get">
                                 <label>
-                                    <input type="number" th:value="${event.id}" name="eventId" hidden="hidden"/>
+                                    <input hidden="hidden" name="id" th:value="${event.id}" type="number"/>
                                 </label>
                                 <button class="btn btn-warning"
                                         th:text="#{eventManagement.events.eventDetails.button.text}"></button>

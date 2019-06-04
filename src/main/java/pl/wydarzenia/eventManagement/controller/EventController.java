@@ -67,7 +67,7 @@ public class EventController {
     @GetMapping("wydarzenie/szczegoly")
     public String getEventDetails(
             Model model,
-            @RequestParam long eventId) {
+            @RequestParam("id") long eventId) {
         Event event = eventService.getEventById(eventId);
         model.addAttribute("event", event);
         return "event_details";
