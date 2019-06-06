@@ -56,7 +56,8 @@
         </div>
         <div class="form-group">
             <label for="date-of-event" th:text="#{createEvent.eventDate.label}"></label>
-            <input class="form-control" id="date-of-event" th:field="*{dateOfTheEvent}" th:placeholder="#{createEvent.date.format}"
+            <input class="form-control" id="date-of-event" th:field="*{dateOfTheEvent}"
+                   th:placeholder="#{createEvent.date.format}"
                    type="text"/>
             <div th:if="${#fields.hasErrors('dateOfTheEvent')}" class="alert alert-danger">
                 <span th:errors="*{dateOfTheEvent}"></span>
@@ -82,6 +83,14 @@
             <textarea id="comments" class="form-control" th:field="*{comments}"></textarea>
             <div th:if="${#fields.hasErrors('comments')}" class="alert alert-danger">
                 <span th:errors="*{comments}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regulations" th:text="#{createEvent.regulations.label}"></label>
+            <input id="regulations" th:checked="*{regulations}" type="checkbox"/>
+            <a href="regulations" target="_blank">Pełny regulamin</a>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('regulations')}">
+                <span th:errors="*{regulations}"></span>
             </div>
         </div>
 

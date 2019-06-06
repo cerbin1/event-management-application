@@ -56,6 +56,9 @@ public class Event {
     @Pattern(regexp = EMAIL_REGEX, message = "Proszę podać poprawny adres email!")
     private String organizerEmail;
 
+    @NotNull(message = "Do zgłoszenia wydarzenia wymagane jest potwierdzenie regulaminu!")
+    private Boolean regulations = false;
+
     @NotNull(message = "Do zgłoszenia wydarzenia wymagana jest potwierdzona klauzula RODO!")
     private Boolean rodoClause = null;
 

@@ -20,4 +20,9 @@ public class HomeController {
         model.addAttribute("acceptedEvents", eventService.getAcceptedEvents());
         return "home";
     }
+
+    @RequestMapping("/wydarzenia/regulations")
+    public String getRegulationsView() {
+        return "regulations";
+    }
 }
