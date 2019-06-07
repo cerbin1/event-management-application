@@ -38,5 +38,10 @@ public class EventValidator implements Validator {
         if (dateOfTheEvent != null && !isValidDate(dateOfTheEvent)) {
             errors.rejectValue("dateOfTheEvent", "createEvent.validation.dateOfTheEvent");
         }
+
+        Boolean regulations = event.getRegulations();
+        if (regulations != null && !regulations) {
+            errors.rejectValue("regulations", "createEvent.validation.regulations.message");
+        }
     }
 }

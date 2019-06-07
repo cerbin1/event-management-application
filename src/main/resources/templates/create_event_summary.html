@@ -71,6 +71,12 @@
                       th:name="comments" th:text="*{comments}" th:readonly="true"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="regulations" th:text="#{createEvent.regulations.label}"></label>
+            <input id="regulations" name="regulations" th:checked="*{regulations}" type="checkbox"/>
+            <a href="regulations" target="_blank" th:text="#{createEventSummary.regulations.link.text}"></a>
+        </div>
+
         <h3 th:text="#{createEventSummary.organizer.info}"></h3>
         <div class="form-group">
             <div class="row">

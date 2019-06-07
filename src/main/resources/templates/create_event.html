@@ -87,13 +87,12 @@
         </div>
         <div class="form-group">
             <label for="regulations" th:text="#{createEvent.regulations.label}"></label>
-            <input id="regulations" th:checked="*{regulations}" type="checkbox"/>
-            <a href="regulations" target="_blank">Pełny regulamin</a>
+            <input id="regulations" name="regulations" th:checked="*{regulations}" type="checkbox"/>
+            <a href="regulations" target="_blank" th:text="#{createEvent.regulations.link.text}"></a>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('regulations')}">
                 <span th:errors="*{regulations}"></span>
             </div>
         </div>
-
 
         <h3 th:text="#{createEvent.organizer.info}"></h3>
         <div class="form-group">

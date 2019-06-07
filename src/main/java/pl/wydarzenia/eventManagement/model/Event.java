@@ -57,7 +57,7 @@ public class Event {
     private String organizerEmail;
 
     @NotNull(message = "Do zgłoszenia wydarzenia wymagane jest potwierdzenie regulaminu!")
-    private Boolean regulations = false;
+    private Boolean regulations = null;
 
     @NotNull(message = "Do zgłoszenia wydarzenia wymagana jest potwierdzona klauzula RODO!")
     private Boolean rodoClause = null;
