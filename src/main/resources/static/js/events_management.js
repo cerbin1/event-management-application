@@ -1,7 +1,8 @@
 ;$(document).ready(function () {
-    initializeAcceptedEventsDatatable();
+    initializeDataTables();
 
-    function initializeAcceptedEventsDatatable() {
+    function initializeDataTables() {
         $('#newEventsTable').DataTable();
+        $('#personDetailsTable').DataTable();
     }
 });

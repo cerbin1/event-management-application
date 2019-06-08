@@ -12,6 +12,7 @@ import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
+import pl.wydarzenia.person.service.PersonService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,15 +20,18 @@ import java.util.List;
 @Controller
 public class EventManagementController {
     private EventService eventService;
+    private PersonService personService;
 
     @Autowired
-    public EventManagementController(EventService eventService) {
+    public EventManagementController(EventService eventService, PersonService personService) {
         this.eventService = eventService;
+        this.personService = personService;
     }
 
     @GetMapping("wydarzenia/zarzadzanie")
     public String getEventManagementPage(Model model) {
         model.addAttribute("events", eventService.getAllEvents());
+        model.addAttribute("persons", personService.getAllPersons());
         return "events_management";
     }
 

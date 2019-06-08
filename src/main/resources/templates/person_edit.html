@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title th:text="#{personEdit.title}"></title>
+</head>
+<body>
+
+<div class="container">
+    <h1 th:text="#{personEdit.mainText}"></h1>
+
+    <form action="#" method="post" th:action="@{/zarzadzanieDanymiOsobowymi/osoba/zapisz}" th:object="${person}">
+        <input th:name="id" th:value="*{id}" type="hidden"/>
+
+        <h3 th:text="#{personEdit.person.personalDataInfo}"></h3>
+        <div class="form-group">
+            <label for="name" th:text="#{personEdit.person.name.label}"></label>
+            <input class="form-control" id="name" th:name="name"
+                   th:value="*{name}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
+                <span th:errors="*{name}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="surname" th:text="#{personEdit.person.surname.label}"></label>
+            <input class="form-control" id="surname" th:name="surname"
+                   th:value="*{surname}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('surname')}">
+                <span th:errors="*{surname}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone-number" th:text="#{personEdit.person.phoneNumber.label}"></label>
+            <input class="form-control" id="phone-number" th:name="phoneNumber"
+                   th:value="*{phoneNumber}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('phoneNumber')}">
+                <span th:errors="*{phoneNumber}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" th:text="#{personEdit.person.email.label}"></label>
+            <input class="form-control" id="email" th:field="*{email}" type="email"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}">
+                <span th:errors="*{email}"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>
+                    <input hidden="hidden" id="personId" th:value="${person.id}"/>
+                </label>
+                <button class="btn btn-warning" id="backButton"
+                        th:text="#{personEdit.cancelButton.text}"
+                        type="button">
+                </button>
+                <button class="btn btn-danger" data-target="#deletePerson" data-toggle="modal"
+                        th:text="#{personEdit.deletePersonalData.button.text}" type="button"></button>
+                <button class="btn btn-primary" th:text="#{personEdit.saveChanges.button.text}"
+                        type="submit">
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div aria-hidden="true" aria-labelledby="deletePersonModalLabel" class="modal fade" id="deletePerson" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePersonModalLabel" th:text="#{personEdit.modal.title}"></h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span th:text="#{personEdit.modal.body}"></span>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" data-dismiss="modal" th:text="#{personEdit.modal.cancel.button.text}"
+                        type="button">
+                </button>
+                <button class="btn btn-danger" id="deletePersonButton" th:text="#{personEdit.modal.confirmDelete.button.text}"
+                        type="button"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/person_edit.js}" type="application/javascript"></script>
+</body>
+</html>
