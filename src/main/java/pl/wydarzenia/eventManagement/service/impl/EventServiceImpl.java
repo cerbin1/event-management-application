@@ -42,7 +42,7 @@ public class EventServiceImpl implements EventService {
                 new EventPlace("02", "Pokój biurowy"),
                 new EventPlace("03", "Hala sportowa"),
                 new EventPlace("04", "Biblioteka"),
-                new EventPlace("05", "Labolatorium"),
+                new EventPlace("05", "Laboratorium"),
                 new EventPlace("06", "Sala komputerowa"),
                 new EventPlace("07", "Nie określono"));
     }
