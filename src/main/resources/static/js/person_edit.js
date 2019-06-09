@@ -9,7 +9,7 @@ $(document).ready(function () {
             url: '/zarzadzanieDanymiOsobowymi/osoba/usun',
             type: 'delete',
             data: {
-                id: $('#eventId').val()
+                id: $('#personId').val()
             },
             success: [function () {
                 window.location.replace('/wydarzenia/zarzadzanie')
