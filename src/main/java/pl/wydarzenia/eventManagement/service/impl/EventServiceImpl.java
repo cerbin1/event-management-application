@@ -77,7 +77,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAllEvents() {
-        return events;
+    public int saveEvent(Event event) {
+        return eventDao.save(event);
     }
 }

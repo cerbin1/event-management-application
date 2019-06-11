@@ -54,12 +54,8 @@ public class EventController {
         }
 
         event.setStatus(EventStatus.NEW);
-
-        List<Event> allEvents = eventService.getAllEvents();
-        event.setId(allEvents.size() + 1);
-        allEvents.add(event);
-        // TODO: save
-        return "redirect:/";
+        boolean eventSaveSuccess = eventService.saveEvent(event) == 1;
+        return eventSaveSuccess ? "redirect:/" : "create_event";
     }
 
     @GetMapping("wydarzenie/szczegoly")

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface EventDao {
     List<Event> getAllEvents();
+
+    int save(Event event);
 }

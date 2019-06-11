@@ -19,4 +19,6 @@ public interface EventService {
     Event getEventById(long eventId);
 
     List<Event> getAllEvents();
+
+    int saveEvent(Event event);
 }
