@@ -12,4 +12,6 @@ public interface EventDao {
     Event getById(long eventId);
 
     int update(Event event);
+
+    boolean delete(long eventId);
 }

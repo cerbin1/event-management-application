@@ -57,13 +57,14 @@ public class EventManagementController {
 
     @DeleteMapping("/zarzadzanieWydarzeniami/wydarzenie/usun")
     public ResponseEntity deleteEvent(@RequestParam("id") long eventId) {
-        // TODO: delete
         Event eventToRemove = eventService.getEventById(eventId);
         if (eventToRemove == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        eventService.getAllEvents().remove(eventToRemove);
-        return new ResponseEntity(HttpStatus.OK);
+        if (eventService.deleteEventWithId(eventId)) {
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @ModelAttribute("eventCategories")

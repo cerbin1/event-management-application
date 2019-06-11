@@ -79,4 +79,9 @@ public class EventServiceImpl implements EventService {
     public int updateEvent(Event event) {
         return eventDao.update(event);
     }
+
+    @Override
+    public boolean deleteEventWithId(long eventId) {
+        return eventDao.delete(eventId);
+    }
 }
