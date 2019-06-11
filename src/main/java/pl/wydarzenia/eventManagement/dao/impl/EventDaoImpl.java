@@ -47,6 +47,8 @@ public class EventDaoImpl implements EventDao {
             "    photograph=?" +
             " WHERE id =?";
     private static final String DELETE_EVENT = "DELETE FROM events WHERE id=?";
+    private static final String DELETE_PERSON = "DELETE FROM persons where id=(SELECT personid FROM events WHERE id=?)";
+
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -186,7 +188,11 @@ public class EventDaoImpl implements EventDao {
     }
 
     @Override
+    @Transactional
     public boolean delete(long eventId) {
+        if (jdbcTemplate.update(DELETE_PERSON, eventId) != 1) {
+            throw new RuntimeException("Error when trying to delete event!");
+        }
         return jdbcTemplate.update(DELETE_EVENT, eventId) == 1;
     }
 }
