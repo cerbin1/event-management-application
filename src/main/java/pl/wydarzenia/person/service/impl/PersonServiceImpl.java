@@ -31,4 +31,9 @@ public class PersonServiceImpl implements PersonService {
     public int updatePerson(Person person) {
         return personDao.update(person);
     }
+
+    @Override
+    public boolean deletePersonWithId(long personId) {
+        return personDao.delete(personId);
+    }
 }

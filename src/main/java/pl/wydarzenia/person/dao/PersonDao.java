@@ -10,4 +10,6 @@ public interface PersonDao {
     Person getById(long personId);
 
     int update(Person person);
+
+    boolean delete(long personId);
 }

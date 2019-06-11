@@ -46,12 +46,13 @@ public class PersonController {
 
     @DeleteMapping("/zarzadzanieDanymiOsobowymi/osoba/usun")
     public ResponseEntity deletePerson(@RequestParam("id") long personId) {
-        // TODO: delete
         Person personToRemove = personService.getPersonById(personId);
         if (personToRemove == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        personService.getAllPersons().remove(personToRemove);
-        return new ResponseEntity(HttpStatus.OK);
+        if (personService.deletePersonWithId(personId)) {
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

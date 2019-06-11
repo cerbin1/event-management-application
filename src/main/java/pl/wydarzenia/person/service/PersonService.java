@@ -10,4 +10,6 @@ public interface PersonService {
     Person getPersonById(long personId);
 
     int updatePerson(Person person);
+
+    boolean deletePersonWithId(long personId);
 }

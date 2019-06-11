@@ -17,6 +17,12 @@ public class PersonDaoImpl implements PersonDao {
             " WHERE id = ?";
     private static final String SELECT_ALL_PERSONS = "SELECT * FROM persons;";
     private static final String SELECT_PERSON_BY_ID = "SELECT * FROM persons WHERE id = ?";
+    private static final String CHANGE_PERSON_DATA_TO_DELETED = "UPDATE persons" +
+            " SET personname ='USUNIĘTO'," +
+            "    surname='USUNIĘTO'," +
+            "    phoneNumber='USUNIĘTO'," +
+            "    email='USUNIĘTO'" +
+            " WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -58,5 +64,10 @@ public class PersonDaoImpl implements PersonDao {
                 person.getId()
         };
         return jdbcTemplate.update(UPDATE_PERSON, params);
+    }
+
+    @Override
+    public boolean delete(long personId) {
+        return jdbcTemplate.update(CHANGE_PERSON_DATA_TO_DELETED, personId) == 1;
     }
 }
