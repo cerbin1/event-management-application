@@ -2,24 +2,32 @@ package pl.wydarzenia.eventManagement.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.wydarzenia.eventManagement.dao.EventDao;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventCategory;
 import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
-import pl.wydarzenia.utils.test.TestHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
-    private List<Event> events = TestHelper.getTestEvents();
+    private final EventDao eventDao;
+    private List<Event> events = new ArrayList<>();
+
+    @Autowired
+    public EventServiceImpl(EventDao eventDao) {
+        this.eventDao = eventDao;
+    }
+
 
     @Autowired
     public List<Event> getAcceptedEvents() {
-        return events
+        return eventDao.getAllEvents()
                 .stream()
                 .filter(event -> event.getStatus().equals(EventStatus.ACCEPTED))
                 .collect(Collectors.toList());

@@ -18,8 +18,6 @@ import pl.wydarzenia.eventManagement.validator.EventValidator;
 import javax.validation.Valid;
 import java.util.List;
 
-import static pl.wydarzenia.utils.test.TestHelper.getSingleTestEvent;
-
 @Controller
 public class EventController {
     private final EventService eventService;
@@ -31,7 +29,7 @@ public class EventController {
 
     @GetMapping("wydarzenia/dodaj")
     public String getEventCreationForm(Model model) {
-        model.addAttribute("event", getSingleTestEvent());
+        model.addAttribute("event", new Event());
         return "create_event";
     }
 
