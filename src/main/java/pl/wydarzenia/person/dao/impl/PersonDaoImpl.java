@@ -12,11 +12,11 @@ import java.util.List;
 
 @Repository
 public class PersonDaoImpl implements PersonDao {
+    public static final String UPDATE_PERSON = "UPDATE persons" +
+            " SET personName = ?, surname = ?, phoneNumber = ?, email = ?" +
+            " WHERE id = ?";
     private static final String SELECT_ALL_PERSONS = "SELECT * FROM persons;";
     private static final String SELECT_PERSON_BY_ID = "SELECT * FROM persons WHERE id = ?";
-    private static final String UPDATE_PERSON = "UPDATE persons" +
-            " SET name = ?, surname = ?, phoneNumber = ?, email = ?" +
-            " WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -28,7 +28,7 @@ public class PersonDaoImpl implements PersonDao {
     private static Person mapRow(ResultSet resultSet, int i) throws SQLException {
         Person person = new Person();
         person.setId(resultSet.getLong("id"));
-        person.setName(resultSet.getString("name"));
+        person.setName(resultSet.getString("personName"));
         person.setSurname(resultSet.getString("surname"));
         person.setPhoneNumber(resultSet.getString("phoneNumber"));
         person.setEmail(resultSet.getString("email"));

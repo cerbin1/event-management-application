@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div class="form-group" hidden="hidden">
+        <div class="form-group">
             <div class="row">
                 <div class="col-6">
                     <label for="organizer-name" th:text="#{eventsManagementEvent.organizerName.label}"></label>
@@ -125,14 +125,14 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" hidden="hidden">
+        <div class="form-group">
             <label for="phone" th:text="#{eventsManagementEvent.organizerPhoneNumber.label}"></label>
             <input class="form-control" id="phone" th:field="*{organizerPhoneNumber}" type="text"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerPhoneNumber')}">
                 <span th:errors="*{organizerPhoneNumber}"></span>
             </div>
         </div>
-        <div class="form-group" hidden="hidden">
+        <div class="form-group">
             <label for="email" th:text="#{eventsManagementEvent.organizerEmail.label}"></label>
             <input class="form-control" id="email" th:field="*{organizerEmail}" type="email"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerEmail')}">

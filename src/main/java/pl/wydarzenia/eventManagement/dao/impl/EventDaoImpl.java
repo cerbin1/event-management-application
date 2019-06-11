@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static pl.wydarzenia.person.dao.impl.PersonDaoImpl.UPDATE_PERSON;
+
 @Repository
 public class EventDaoImpl implements EventDao {
     private static final String SELECT_ALL_EVENTS = "SELECT * FROM events;";
@@ -22,10 +24,12 @@ public class EventDaoImpl implements EventDao {
             "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String INSERT_NEW_PERSON = "INSERT INTO persons " +
-            "(name, surname, phoneNumber, email)" +
+            "(personName, surname, phoneNumber, email)" +
             " VALUES (?, ?, ?, ?) " +
             "RETURNING id";
-    private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events WHERE id = ?";
+    private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events event" +
+            " LEFT JOIN persons person on event.personId=person.id" +
+            " WHERE event.id = ?";
 
     private static final String UPDATE_EVENT = "UPDATE events" +
             " SET name=?," +
@@ -66,6 +70,29 @@ public class EventDaoImpl implements EventDao {
         event.setRodoClause(resultSet.getBoolean("rodoClause"));
         event.setPromotionalCampaign(resultSet.getBoolean("promotionalCampaign"));
         event.setPhotograph(resultSet.getBoolean("photograph"));
+        return event;
+    }
+
+    private static Event mapRowWithPerson(ResultSet resultSet, int i) throws SQLException {
+        Event event = new Event();
+        event.setId(resultSet.getLong("id"));
+        event.setName(resultSet.getString("name"));
+        event.setStatus(resultSet.getString("status"));
+        event.setCategory(resultSet.getString("category"));
+        event.setPlace(resultSet.getString("place"));
+        event.setOrganizationName(resultSet.getString("organizationName"));
+        event.setDateOfTheEvent(resultSet.getString("dateOfTheEvent"));
+        event.setDescription(resultSet.getString("description"));
+        event.setPlannedNumberOfParticipants(resultSet.getInt("plannedNumberOfParticipants"));
+        event.setComments(resultSet.getString("comments"));
+        event.setRegulations(resultSet.getBoolean("regulations"));
+        event.setRodoClause(resultSet.getBoolean("rodoClause"));
+        event.setPromotionalCampaign(resultSet.getBoolean("promotionalCampaign"));
+        event.setPhotograph(resultSet.getBoolean("photograph"));
+        event.setOrganizerName(resultSet.getString("personName"));
+        event.setOrganizerSurname(resultSet.getString("surname"));
+        event.setOrganizerPhoneNumber(resultSet.getString("phoneNumber"));
+        event.setOrganizerEmail(resultSet.getString("email"));
         return event;
     }
 
@@ -114,11 +141,30 @@ public class EventDaoImpl implements EventDao {
         return jdbcTemplate.queryForObject(
                 SELECT_EVENT_BY_ID,
                 new Object[]{eventId},
-                EventDaoImpl::mapRow);
+                EventDaoImpl::mapRowWithPerson);
     }
 
     @Override
+    @Transactional
     public int update(Event event) {
+        Integer eventPersonId = jdbcTemplate.queryForObject("SELECT personId from events where id=?",
+                new Object[]{event.getId()},
+                Integer.class);
+        if (eventPersonId == null) {
+            throw new RuntimeException("Error while trying update event!");
+        }
+        Object[] updatePersonParams = new Object[]{
+                event.getOrganizerName(),
+                event.getOrganizerSurname(),
+                event.getOrganizerPhoneNumber(),
+                event.getOrganizerEmail(),
+                eventPersonId
+        };
+        boolean updatePerson = jdbcTemplate.update(UPDATE_PERSON, updatePersonParams) == 1;
+        if (!updatePerson) {
+            throw new RuntimeException("Error while trying update event!");
+        }
+
         Object[] params = new Object[]{
                 event.getName(),
                 event.getStatus(),

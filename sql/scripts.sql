@@ -20,7 +20,7 @@ CREATE TABLE events
 CREATE TABLE persons
 (
     id          serial PRIMARY KEY,
-    name        VARCHAR(30) NOT NULL,
+    personName        VARCHAR(30) NOT NULL,
     surname     VARCHAR(30),
     phoneNumber VARCHAR(10),
     email       VARCHAR(30)
@@ -45,7 +45,7 @@ VALUES ('Nazwa wydarzenia',
         1);
 
 
-INSERT INTO persons (name, surname, phoneNumber, email)
+INSERT INTO persons (personName, surname, phoneNumber, email)
 VALUES ('Jan',
         'Nowak',
         '123456789',

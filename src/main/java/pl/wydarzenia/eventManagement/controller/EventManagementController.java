@@ -40,11 +40,6 @@ public class EventManagementController {
             Model model,
             @RequestParam("id") long eventId) {
         Event event = eventService.getEventById(eventId);
-        event.setOrganizerName("example");
-        event.setOrganizerSurname("example");
-        event.setOrganizerPhoneNumber("000000000");
-        event.setOrganizerEmail("example@example.com");
-
         model.addAttribute("event", event);
         return "events_management_event";
     }
