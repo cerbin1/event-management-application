@@ -17,10 +17,19 @@ CREATE TABLE events
     personId                    INTEGER
 );
 
-insert into events (name, status, category, place, organizationName, dateOfTheEvent,
+CREATE TABLE persons
+(
+    id          serial PRIMARY KEY,
+    name        VARCHAR(30) NOT NULL,
+    surname     VARCHAR(30),
+    phoneNumber VARCHAR(10),
+    email       VARCHAR(30)
+);
+
+INSERT INTO events (name, status, category, place, organizationName, dateOfTheEvent,
                     description, plannednumberofparticipants, comments, regulations,
                     rodoclause, promotionalcampaign, photograph, personid)
-values ('Nazwa wydarzenia',
+VALUES ('Nazwa wydarzenia',
         '02',
         '01',
         '01',
@@ -34,3 +43,10 @@ values ('Nazwa wydarzenia',
         TRUE,
         TRUE,
         1);
+
+
+INSERT INTO persons (name, surname, phoneNumber, email)
+VALUES ('Jan',
+        'Nowak',
+        '123456789',
+        'jan@nowak.pl');

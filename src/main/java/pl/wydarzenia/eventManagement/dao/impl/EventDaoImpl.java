@@ -17,6 +17,10 @@ public class EventDaoImpl implements EventDao {
             " organizationname, dateoftheevent, description, plannednumberofparticipants, comments," +
             " regulations, rodoclause, promotionalcampaign, photograph, personid) VALUES (" +
             "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_NEW_PERSON = "INSERT INTO persons " +
+            "(name, surname, phoneNumber, email)" +
+            " VALUES (?, ?, ?, ?) " +
+            "RETURNING id";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -50,9 +54,19 @@ public class EventDaoImpl implements EventDao {
     @Override
     @Transactional
     public int save(Event event) {
-        // insert person
+        Object[] addPersonParams = new Object[]{
+                event.getOrganizerName(),
+                event.getOrganizerSurname(),
+                event.getOrganizerPhoneNumber(),
+                event.getOrganizerEmail()
+        };
 
-        Object[] params = new Object[]{
+        Integer personId = jdbcTemplate.queryForObject(INSERT_NEW_PERSON, addPersonParams, Integer.class);
+        if (personId == null) {
+            throw new RuntimeException("Error while trying insert new person!");
+        }
+
+        Object[] addEventParams = new Object[]{
                 event.getName(),
                 EventStatus.NEW,
                 event.getCategory(),
@@ -66,9 +80,8 @@ public class EventDaoImpl implements EventDao {
                 event.getRodoClause(),
                 event.getPromotionalCampaign(),
                 event.getPhotograph(),
-                999
-                // add person_id,
+                personId
         };
-        return jdbcTemplate.update(INSERT_NEW_EVENT, params);
+        return jdbcTemplate.update(INSERT_NEW_EVENT, addEventParams);
     }
 }
