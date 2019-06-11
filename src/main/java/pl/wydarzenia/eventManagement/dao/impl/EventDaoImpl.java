@@ -15,15 +15,33 @@ import java.util.List;
 @Repository
 public class EventDaoImpl implements EventDao {
     private static final String SELECT_ALL_EVENTS = "SELECT * FROM events;";
+
     private static final String INSERT_NEW_EVENT = "INSERT INTO events (name, status, category, place," +
             " organizationname, dateoftheevent, description, plannednumberofparticipants, comments," +
             " regulations, rodoclause, promotionalcampaign, photograph, personid) VALUES (" +
             "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     private static final String INSERT_NEW_PERSON = "INSERT INTO persons " +
             "(name, surname, phoneNumber, email)" +
             " VALUES (?, ?, ?, ?) " +
             "RETURNING id";
     private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events WHERE id = ?";
+
+    private static final String UPDATE_EVENT = "UPDATE events" +
+            " SET name=?," +
+            "    status=?," +
+            "    category=?," +
+            "    place=?," +
+            "    organizationName=?," +
+            "    dateOfTheEvent=?," +
+            "    description=?," +
+            "    plannedNumberOfParticipants=?," +
+            "    comments=?," +
+            "    regulations=?," +
+            "    rodoClause=?," +
+            "    promotionalCampaign=?," +
+            "    photograph=?" +
+            " WHERE id =?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -97,5 +115,26 @@ public class EventDaoImpl implements EventDao {
                 SELECT_EVENT_BY_ID,
                 new Object[]{eventId},
                 EventDaoImpl::mapRow);
+    }
+
+    @Override
+    public int update(Event event) {
+        Object[] params = new Object[]{
+                event.getName(),
+                event.getStatus(),
+                event.getCategory(),
+                event.getPlace(),
+                event.getOrganizationName(),
+                event.getDateOfTheEvent(),
+                event.getDescription(),
+                event.getPlannedNumberOfParticipants(),
+                event.getComments(),
+                event.getRegulations(),
+                event.getRodoClause(),
+                event.getPromotionalCampaign(),
+                event.getPhotograph(),
+                event.getId()
+        };
+        return jdbcTemplate.update(UPDATE_EVENT, params);
     }
 }

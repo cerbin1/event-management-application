@@ -10,4 +10,6 @@ public interface EventDao {
     int save(Event event);
 
     Event getById(long eventId);
+
+    int update(Event event);
 }

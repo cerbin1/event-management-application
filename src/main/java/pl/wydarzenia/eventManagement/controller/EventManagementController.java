@@ -40,6 +40,11 @@ public class EventManagementController {
             Model model,
             @RequestParam("id") long eventId) {
         Event event = eventService.getEventById(eventId);
+        event.setOrganizerName("example");
+        event.setOrganizerSurname("example");
+        event.setOrganizerPhoneNumber("000000000");
+        event.setOrganizerEmail("example@example.com");
+
         model.addAttribute("event", event);
         return "events_management_event";
     }
@@ -51,10 +56,8 @@ public class EventManagementController {
         if (result.hasErrors()) {
             return "events_management_event";
         }
-        // TODO: save
-        int eventId = (int) event.getId();
-        eventService.getAllEvents().set(eventId - 1, event);
-        return "redirect:/wydarzenia/zarzadzanie";
+        boolean eventSaveSuccess = eventService.updateEvent(event) == 1;
+        return eventSaveSuccess ? "redirect:/wydarzenia/zarzadzanie" : "events_management_event";
     }
 
     @DeleteMapping("/zarzadzanieWydarzeniami/wydarzenie/usun")

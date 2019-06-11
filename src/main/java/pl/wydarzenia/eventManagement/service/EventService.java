@@ -21,4 +21,6 @@ public interface EventService {
     List<Event> getAllEvents();
 
     int saveEvent(Event event);
+
+    int updateEvent(Event event);
 }

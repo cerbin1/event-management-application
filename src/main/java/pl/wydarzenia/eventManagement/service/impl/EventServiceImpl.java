@@ -74,4 +74,9 @@ public class EventServiceImpl implements EventService {
     public int saveEvent(Event event) {
         return eventDao.save(event);
     }
+
+    @Override
+    public int updateEvent(Event event) {
+        return eventDao.update(event);
+    }
 }

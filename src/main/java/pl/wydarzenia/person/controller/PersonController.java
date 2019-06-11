@@ -39,8 +39,8 @@ public class PersonController {
             return "person_edit";
         }
 
-        boolean eventSaveSuccess = personService.updatePerson(person) == 1;
-        return eventSaveSuccess ? "redirect:/wydarzenia/zarzadzanie" : "person_edit";
+        boolean personUpdateSuccess = personService.updatePerson(person) == 1;
+        return personUpdateSuccess ? "redirect:/wydarzenia/zarzadzanie" : "person_edit";
     }
 
 
