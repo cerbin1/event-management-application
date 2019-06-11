@@ -8,4 +8,6 @@ public interface PersonDao {
     List<Person> getAllPersons();
 
     Person getById(long personId);
+
+    int update(Person person);
 }

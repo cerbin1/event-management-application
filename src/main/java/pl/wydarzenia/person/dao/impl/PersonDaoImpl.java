@@ -14,6 +14,9 @@ import java.util.List;
 public class PersonDaoImpl implements PersonDao {
     private static final String SELECT_ALL_PERSONS = "SELECT * FROM persons;";
     private static final String SELECT_PERSON_BY_ID = "SELECT * FROM persons WHERE id = ?";
+    private static final String UPDATE_PERSON = "UPDATE persons" +
+            " SET name = ?, surname = ?, phoneNumber = ?, email = ?" +
+            " WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -43,5 +46,17 @@ public class PersonDaoImpl implements PersonDao {
         return jdbcTemplate.queryForObject(SELECT_PERSON_BY_ID,
                 new Object[]{personId},
                 PersonDaoImpl::mapRow);
+    }
+
+    @Override
+    public int update(Person person) {
+        Object[] params = new Object[]{
+                person.getName(),
+                person.getSurname(),
+                person.getPhoneNumber(),
+                person.getEmail(),
+                person.getId()
+        };
+        return jdbcTemplate.update(UPDATE_PERSON, params);
     }
 }

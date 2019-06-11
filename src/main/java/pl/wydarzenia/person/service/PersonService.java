@@ -8,4 +8,6 @@ public interface PersonService {
     List<Person> getAllPersons();
 
     Person getPersonById(long personId);
+
+    int updatePerson(Person person);
 }

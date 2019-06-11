@@ -38,11 +38,9 @@ public class PersonController {
         if (result.hasErrors()) {
             return "person_edit";
         }
-        // TODO: save
-        int personId = (int) person.getId();
-        personService.getAllPersons().set(personId - 1, person);
 
-        return "redirect:/wydarzenia/zarzadzanie";
+        boolean eventSaveSuccess = personService.updatePerson(person) == 1;
+        return eventSaveSuccess ? "redirect:/wydarzenia/zarzadzanie" : "person_edit";
     }
 
 
