@@ -24,6 +24,10 @@ public class EventServiceImpl implements EventService {
         this.eventDao = eventDao;
     }
 
+    @Override
+    public List<Event> getAllEvents() {
+        return eventDao.getAllEvents();
+    }
 
     @Autowired
     public List<Event> getAcceptedEvents() {
