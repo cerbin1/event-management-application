@@ -9,7 +9,6 @@ import pl.wydarzenia.eventManagement.model.EventPlace;
 import pl.wydarzenia.eventManagement.model.EventStatus;
 import pl.wydarzenia.eventManagement.service.EventService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 @Service
 public class EventServiceImpl implements EventService {
     private final EventDao eventDao;
-    private List<Event> events = new ArrayList<>();
 
     @Autowired
     public EventServiceImpl(EventDao eventDao) {
@@ -69,11 +67,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event getEventById(long eventId) {
-        return events
-                .stream()
-                .filter(event -> event.getId() == eventId)
-                .findFirst()
-                .orElse(null);
+        return eventDao.getById(eventId);
     }
 
     @Override

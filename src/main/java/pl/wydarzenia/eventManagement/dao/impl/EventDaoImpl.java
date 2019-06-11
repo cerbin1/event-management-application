@@ -8,6 +8,8 @@ import pl.wydarzenia.eventManagement.dao.EventDao;
 import pl.wydarzenia.eventManagement.model.Event;
 import pl.wydarzenia.eventManagement.model.EventStatus;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -21,6 +23,7 @@ public class EventDaoImpl implements EventDao {
             "(name, surname, phoneNumber, email)" +
             " VALUES (?, ?, ?, ?) " +
             "RETURNING id";
+    private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events WHERE id = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -29,26 +32,29 @@ public class EventDaoImpl implements EventDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    private static Event mapRow(ResultSet resultSet, int i) throws SQLException {
+        Event event = new Event();
+        event.setId(resultSet.getLong("id"));
+        event.setName(resultSet.getString("name"));
+        event.setStatus(resultSet.getString("status"));
+        event.setCategory(resultSet.getString("category"));
+        event.setPlace(resultSet.getString("place"));
+        event.setOrganizationName(resultSet.getString("organizationName"));
+        event.setDateOfTheEvent(resultSet.getString("dateOfTheEvent"));
+        event.setDescription(resultSet.getString("description"));
+        event.setPlannedNumberOfParticipants(resultSet.getInt("plannedNumberOfParticipants"));
+        event.setComments(resultSet.getString("comments"));
+        event.setRegulations(resultSet.getBoolean("regulations"));
+        event.setRodoClause(resultSet.getBoolean("rodoClause"));
+        event.setPromotionalCampaign(resultSet.getBoolean("promotionalCampaign"));
+        event.setPhotograph(resultSet.getBoolean("photograph"));
+        return event;
+    }
+
     @Override
     public List<Event> getAllEvents() {
-        return jdbcTemplate.query(SELECT_ALL_EVENTS, (resultSet, i) -> {
-            Event event = new Event();
-            event.setId(resultSet.getLong("id"));
-            event.setName(resultSet.getString("name"));
-            event.setStatus(resultSet.getString("status"));
-            event.setCategory(resultSet.getString("category"));
-            event.setPlace(resultSet.getString("place"));
-            event.setOrganizationName(resultSet.getString("organizationName"));
-            event.setDateOfTheEvent(resultSet.getString("dateOfTheEvent"));
-            event.setDescription(resultSet.getString("description"));
-            event.setPlannedNumberOfParticipants(resultSet.getInt("plannedNumberOfParticipants"));
-            event.setComments(resultSet.getString("comments"));
-            event.setRegulations(resultSet.getBoolean("regulations"));
-            event.setRodoClause(resultSet.getBoolean("rodoClause"));
-            event.setPromotionalCampaign(resultSet.getBoolean("promotionalCampaign"));
-            event.setPhotograph(resultSet.getBoolean("photograph"));
-            return event;
-        });
+        return jdbcTemplate.query(SELECT_ALL_EVENTS,
+                (resultSet, i) -> mapRow(resultSet, 0));
     }
 
     @Override
@@ -83,5 +89,13 @@ public class EventDaoImpl implements EventDao {
                 personId
         };
         return jdbcTemplate.update(INSERT_NEW_EVENT, addEventParams);
+    }
+
+    @Override
+    public Event getById(long eventId) {
+        return jdbcTemplate.queryForObject(
+                SELECT_EVENT_BY_ID,
+                new Object[]{eventId},
+                EventDaoImpl::mapRow);
     }
 }
