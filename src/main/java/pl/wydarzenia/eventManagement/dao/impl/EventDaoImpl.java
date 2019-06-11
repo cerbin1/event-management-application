@@ -16,7 +16,10 @@ import static pl.wydarzenia.person.dao.impl.PersonDaoImpl.UPDATE_PERSON;
 
 @Repository
 public class EventDaoImpl implements EventDao {
-    private static final String SELECT_ALL_EVENTS = "SELECT * FROM events;";
+    private static final String SELECT_ALL_EVENTS = "SELECT event.id as id, event.name as name, dictionaryStatus.value as status, dictionaryCategory.value as category, dictionaryPlace.value as place, organizationName, dateOfTheEvent, description, plannednumberofparticipants, comments, regulations, rodoclause, promotionalcampaign, photograph FROM events event" +
+            " LEFT JOIN dictionaries dictionaryCategory ON event.category = dictionaryCategory.key AND dictionaryCategory.name='eventCategory'" +
+            " LEFT JOIN dictionaries dictionaryPlace ON event.place = dictionaryPlace.key AND dictionaryPlace.name='eventPlace'" +
+            " LEFT JOIN dictionaries dictionaryStatus ON event.status = dictionaryStatus.key AND dictionaryStatus.name='eventStatus'";
 
     private static final String INSERT_NEW_EVENT = "INSERT INTO events (name, status, category, place," +
             " organizationname, dateoftheevent, description, plannednumberofparticipants, comments," +
@@ -27,8 +30,14 @@ public class EventDaoImpl implements EventDao {
             "(personName, surname, phoneNumber, email)" +
             " VALUES (?, ?, ?, ?) " +
             "RETURNING id";
-    private static final String SELECT_EVENT_BY_ID = "SELECT * FROM events event" +
+    private static final String SELECT_EVENT_BY_ID_FOR_EDITION = "SELECT * FROM events event" +
             " LEFT JOIN persons person on event.personId=person.id" +
+            " WHERE event.id = ?";
+    private static final String SELECT_EVENT_BY_ID = "SELECT person.personName, person.surname, person.phoneNumber, person.email, event.id as id, event.name as name, dictionaryStatus.value as status, dictionaryCategory.value as category, dictionaryPlace.value as place, organizationName, dateOfTheEvent, description, plannednumberofparticipants, comments, regulations, rodoclause, promotionalcampaign, photograph FROM events event" +
+            " LEFT JOIN persons person on event.personId=person.id" +
+            " LEFT JOIN dictionaries dictionaryCategory ON event.category = dictionaryCategory.key AND dictionaryCategory.name='eventCategory'" +
+            " LEFT JOIN dictionaries dictionaryPlace ON event.place = dictionaryPlace.key AND dictionaryPlace.name='eventPlace'" +
+            " LEFT JOIN dictionaries dictionaryStatus ON event.status = dictionaryStatus.key AND dictionaryStatus.name='eventStatus'" +
             " WHERE event.id = ?";
 
     private static final String UPDATE_EVENT = "UPDATE events" +
@@ -194,5 +203,13 @@ public class EventDaoImpl implements EventDao {
             throw new RuntimeException("Error when trying to delete event!");
         }
         return jdbcTemplate.update(DELETE_EVENT, eventId) == 1;
+    }
+
+    @Override
+    public Event getEventForEdit(long eventId) {
+        return jdbcTemplate.queryForObject(
+                SELECT_EVENT_BY_ID_FOR_EDITION,
+                new Object[]{eventId},
+                EventDaoImpl::mapRowWithPerson);
     }
 }

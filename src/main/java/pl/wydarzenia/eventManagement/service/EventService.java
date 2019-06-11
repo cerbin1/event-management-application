@@ -25,4 +25,6 @@ public interface EventService {
     int updateEvent(Event event);
 
     boolean deleteEventWithId(long eventId);
+
+    Event getEventForEdit(long eventId);
 }

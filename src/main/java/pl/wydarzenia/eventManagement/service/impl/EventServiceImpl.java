@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.wydarzenia.eventManagement.model.EventStatus.STATUS_ACCEPTED_NAME;
+
 @Service
 public class EventServiceImpl implements EventService {
     private final EventDao eventDao;
@@ -31,7 +33,7 @@ public class EventServiceImpl implements EventService {
     public List<Event> getAcceptedEvents() {
         return eventDao.getAllEvents()
                 .stream()
-                .filter(event -> event.getStatus().equals(EventStatus.ACCEPTED))
+                .filter(event -> event.getStatus().equals(STATUS_ACCEPTED_NAME))
                 .collect(Collectors.toList());
     }
 
@@ -83,5 +85,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public boolean deleteEventWithId(long eventId) {
         return eventDao.delete(eventId);
+    }
+
+    @Override
+    public Event getEventForEdit(long eventId) {
+        return eventDao.getEventForEdit(eventId);
     }
 }

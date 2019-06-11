@@ -39,7 +39,7 @@ public class EventManagementController {
     public String getEventManagementView(
             Model model,
             @RequestParam("id") long eventId) {
-        Event event = eventService.getEventById(eventId);
+        Event event = eventService.getEventForEdit(eventId);
         model.addAttribute("event", event);
         return "events_management_event";
     }
