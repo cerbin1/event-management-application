@@ -24,11 +24,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person getPersonById(long personId) {
-        return null;
-//        return persons
-//                .stream()
-//                .filter(person -> person.getId() == personId)
-//                .findFirst()
-//                .orElse(null);
+        return personDao.getById(personId);
     }
 }
