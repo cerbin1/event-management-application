@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <title th:text="#{error.title}"></title>
+</head>
+<body>
+<div class="container">
+    <div class="mx-auto">
+        <p class="text-danger" th:text="#{error.pageNotFound}"></p>
+        <a class="btn btn-primary" href="/" th:text="#{error.home.button.text}"></a>
+    </div>
+</div>
+</body>
+</html>
