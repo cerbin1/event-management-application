@@ -29,7 +29,7 @@ public class EventServiceImpl implements EventService {
         return eventDao.getAllEvents();
     }
 
-    @Autowired
+    @Override
     public List<Event> getAcceptedEvents() {
         return eventDao.getAllEvents()
                 .stream()
@@ -37,7 +37,7 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
-    @Autowired
+    @Override
     public List<EventCategory> getCategories() {
         return Arrays.asList(
                 new EventCategory("01", "Uroczystość"),
@@ -47,7 +47,7 @@ public class EventServiceImpl implements EventService {
                 new EventCategory("05", "Sportowe"));
     }
 
-    @Autowired
+    @Override
     public List<EventPlace> getPlaces() {
         return Arrays.asList(
                 new EventPlace("01", "Sala wykładowa"),
@@ -59,7 +59,7 @@ public class EventServiceImpl implements EventService {
                 new EventPlace("07", "Nie określono"));
     }
 
-    @Autowired
+    @Override
     public List<EventStatus> getStatuses() {
         return Arrays.asList(
                 new EventStatus("01", "Nowy"),
