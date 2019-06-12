@@ -72,29 +72,3 @@ INSERT INTO dictionaries (key, value, name)
 VALUES ('02', 'Zaakceptowany', 'eventStatus');
 INSERT INTO dictionaries (key, value, name)
 VALUES ('03', 'Odrzucony', 'eventStatus');
-
-
-INSERT INTO events (name, status, category, place, organizationName, dateOfTheEvent,
-                    description, plannednumberofparticipants, comments, regulations,
-                    rodoclause, promotionalcampaign, photograph, personid)
-VALUES ('Nazwa wydarzenia',
-        '01',
-        '01',
-        '01',
-        'Nazwa organizacji',
-        '04-06-2020',
-        'Opis wydarzenia',
-        150,
-        'Uwagi',
-        TRUE,
-        TRUE,
-        TRUE,
-        TRUE,
-        1);
-
-
-INSERT INTO persons (personName, surname, phoneNumber, email)
-VALUES ('Jan',
-        'Nowak',
-        '123456789',
-        'jan@nowak.pl');
