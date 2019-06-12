@@ -18,80 +18,94 @@
     <div class="row">
         <h1 class="col-12 text-center" th:text="#{eventManagement.mainText}"></h1>
     </div>
-    <div class="row">
-        <h2 th:text="#{eventManagement.events.table.header}"></h2>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <table class="display" id="newEventsTable">
-                <thead>
-                <tr>
-                    <th scope="col" th:text="#{eventManagement.events.table.th.eventName}"></th>
-                    <th scope="col" th:text="#{eventManagement.events.table.th.eventCategory}"></th>
-                    <th scope="col" th:text="#{eventManagement.events.table.th.eventDate}"></th>
-                    <th scope="col" th:text="#{eventManagement.events.table.th.eventStatus}"></th>
-                    <th scope="col" th:text="#{eventManagement.events.table.th.actionButtons}"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="event : ${events}">
-                    <tr>
-                        <td th:text="${event.name}"></td>
-                        <td th:text="${event.category}"></td>
-                        <td th:text="${event.dateOfTheEvent}"></td>
-                        <td th:text="${event.status}"></td>
-                        <td>
-                            <form method="get" th:action="@{/zarzadzanieWydarzeniami/wydarzenie}">
-                                <label>
-                                    <input hidden="hidden" name="id" th:value="${event.id}" type="number"/>
-                                </label>
-                                <button class="btn btn-warning"
-                                        th:text="#{eventManagement.events.eventDetails.button.text}"></button>
-                            </form>
-                        </td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#" id="eventsLink" th:text="#{eventManagement.nav.eventsLink}"></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="personalDataLink" th:text="#{eventManagement.nav.personDataLink}"></a>
+        </li>
+    </ul>
+
+    <div id="eventsTable">
+        <div class="row">
+            <h2 th:text="#{eventManagement.events.table.header}"></h2>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="display" id="newEventsTable">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:text="#{eventManagement.events.table.th.eventName}"></th>
+                        <th scope="col" th:text="#{eventManagement.events.table.th.eventCategory}"></th>
+                        <th scope="col" th:text="#{eventManagement.events.table.th.eventDate}"></th>
+                        <th scope="col" th:text="#{eventManagement.events.table.th.eventStatus}"></th>
+                        <th scope="col" th:text="#{eventManagement.events.table.th.actionButtons}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="event : ${events}">
+                        <tr>
+                            <td th:text="${event.name}"></td>
+                            <td th:text="${event.category}"></td>
+                            <td th:text="${event.dateOfTheEvent}"></td>
+                            <td th:text="${event.status}"></td>
+                            <td>
+                                <form method="get" th:action="@{/zarzadzanieWydarzeniami/wydarzenie}">
+                                    <label>
+                                        <input hidden="hidden" name="id" th:value="${event.id}" type="number"/>
+                                    </label>
+                                    <button class="btn btn-warning"
+                                            th:text="#{eventManagement.events.eventDetails.button.text}"></button>
+                                </form>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
     </div>
 
-    <hr>
-
-    <div class="row">
-        <h2 th:text="#{eventManagement.persons.table.header}"></h2>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <table class="display" id="personDetailsTable">
-                <thead>
-                <tr>
-                    <th scope="col" th:text="#{eventManagement.persons.table.th.name}"></th>
-                    <th scope="col" th:text="#{eventManagement.persons.table.th.surname}"></th>
-                    <th scope="col" th:text="#{eventManagement.persons.table.th.email}"></th>
-                    <th scope="col" th:text="#{eventManagement.persons.table.th.actionButtons}"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="person : ${persons}">
-                    <tr>
-                        <td th:text="${person.name}"></td>
-                        <td th:text="${person.surname}"></td>
-                        <td th:text="${person.email}"></td>
-                        <td>
-                            <form method="get" th:action="@{/zarzadzanieDanymiOsobowymi/osoba}">
-                                <label>
-                                    <input hidden="hidden" name="id" th:value="${person.id}" type="number"/>
-                                </label>
-                                <button class="btn btn-warning"
-                                        th:text="#{eventManagement.persons.userDetails.button.text}"></button>
-                            </form>
-                        </td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
+    <div id="personalDataTable" style="display:none">
+        <div class="row">
+            <h2 th:text="#{eventManagement.persons.table.header}"></h2>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="display" id="personDetailsTable">
+                    <thead>
+                    <tr>
+                        <th scope="col" th:text="#{eventManagement.persons.table.th.name}"></th>
+                        <th scope="col" th:text="#{eventManagement.persons.table.th.surname}"></th>
+                        <th scope="col" th:text="#{eventManagement.persons.table.th.email}"></th>
+                        <th scope="col" th:text="#{eventManagement.persons.table.th.actionButtons}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="person : ${persons}">
+                        <tr>
+                            <td th:text="${person.name}"></td>
+                            <td th:text="${person.surname}"></td>
+                            <td th:text="${person.email}"></td>
+                            <td>
+                                <form method="get" th:action="@{/zarzadzanieDanymiOsobowymi/osoba}">
+                                    <label>
+                                        <input hidden="hidden" name="id" th:value="${person.id}" type="number"/>
+                                    </label>
+                                    <button class="btn btn-warning"
+                                            th:text="#{eventManagement.persons.userDetails.button.text}"></button>
+                                </form>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
     </div>
 </div>
 <script th:src="@{/js/events_management.js}" type="application/javascript"></script>
