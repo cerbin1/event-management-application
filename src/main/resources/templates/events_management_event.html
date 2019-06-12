@@ -2,10 +2,10 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script crossorigin="anonymous"
@@ -18,24 +18,24 @@
 <div class="container">
     <h1 th:text="#{eventsManagementEvent.mainText}"></h1>
 
-    <form action="#" th:action="@{/zarzadzanieWydarzeniami/wydarzenie/zapisz}" th:object="${event}" method="post">
+    <form action="#" method="post" th:action="@{/zarzadzanieWydarzeniami/wydarzenie/zapisz}" th:object="${event}">
         <input th:name="id" th:value="*{id}" type="hidden"/>
 
         <h3 th:text="#{eventsManagementEvent.eventInfo}"></h3>
         <div class="form-group">
             <label for="event-name" th:text="#{eventsManagementEvent.eventName.label}"></label>
-            <input id="event-name" class="form-control" type="text"
-                   th:name="name" th:value="*{name}"/>
+            <input class="form-control" id="event-name" th:name="name"
+                   th:value="*{name}" type="text"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
                 <span th:errors="*{name}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="event-category" th:text="#{eventsManagementEvent.eventCategory.label}"></label>
-            <select id="event-category" class="form-control" th:field="*{category}">
+            <select class="form-control" id="event-category" th:field="*{category}">
                 <th:block th:each="category : ${eventCategories}">
-                    <option th:selected="${event.category==category.value}" th:value="${category.value}"
-                            th:text="${category.name}"></option>
+                    <option th:selected="${event.category==category.value}" th:text="${category.name}"
+                            th:value="${category.value}"></option>
                 </th:block>
             </select>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('category')}">
@@ -45,10 +45,10 @@
 
         <div class="form-group">
             <label for="event-place" th:text="#{eventsManagementEvent.eventPlace.label}"></label>
-            <select id="event-place" class="form-control" th:field="*{place}">
+            <select class="form-control" id="event-place" th:field="*{place}">
                 <th:block th:each="place : ${eventPlaces}">
-                    <option th:selected="${event.place==place.value}" th:value="${place.value}"
-                            th:text="${place.name}"></option>
+                    <option th:selected="${event.place==place.value}" th:text="${place.name}"
+                            th:value="${place.value}"></option>
                 </th:block>
             </select>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('place')}">
@@ -58,8 +58,8 @@
 
         <div class="form-group">
             <label for="organization-name" th:text="#{eventsManagementEvent.organizationName.label}"></label>
-            <input id="organization-name" class="form-control" type="text"
-                   th:name="organizationName" th:value="*{organizationName}"/>
+            <input class="form-control" id="organization-name" th:name="organizationName"
+                   th:value="*{organizationName}" type="text"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('organizationName')}">
                 <span th:errors="*{organizationName}"></span>
             </div>
@@ -67,7 +67,7 @@
 
         <div class="form-group">
             <label for="date-of-event" th:text="#{eventsManagementEvent.eventDate.label}"></label>
-            <input id="date-of-event" class="form-control"
+            <input class="form-control" id="date-of-event"
                    th:field="*{dateOfTheEvent}" th:name="dateOfTheEvent"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('dateOfTheEvent')}">
                 <span th:errors="*{dateOfTheEvent}"></span>
@@ -84,15 +84,15 @@
 
         <div class="form-group">
             <label for="number-of-participants" th:text="#{eventsManagementEvent.numberOfParticipants.label}"></label>
-            <input id="number-of-participants" class="form-control" type="text"
-                   th:name="plannedNumberOfParticipants" th:value="*{plannedNumberOfParticipants}"/>
+            <input class="form-control" id="number-of-participants" th:name="plannedNumberOfParticipants"
+                   th:value="*{plannedNumberOfParticipants}" type="text"/>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('plannedNumberOfParticipants')}">
                 <span th:errors="*{plannedNumberOfParticipants}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="comments" th:text="#{eventsManagementEvent.comments.label}"></label>
-            <textarea id="comments" class="form-control"
+            <textarea class="form-control" id="comments"
                       th:name="comments" th:text="*{comments}"></textarea>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('comments')}">
                 <span th:errors="*{comments}"></span>
@@ -200,10 +200,12 @@
                 <span th:text="#{eventsManagementEvent.modal.body}"></span>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-warning" data-dismiss="modal" th:text="#{eventsManagementEvent.modal.cancel.button.text}"
+                <button class="btn btn-warning" data-dismiss="modal"
+                        th:text="#{eventsManagementEvent.modal.cancel.button.text}"
                         type="button">
                 </button>
-                <button class="btn btn-danger" id="deleteEventButton" th:text="#{eventsManagementEvent.modal.confirmDelete.button.text}"
+                <button class="btn btn-danger" id="deleteEventButton"
+                        th:text="#{eventsManagementEvent.modal.confirmDelete.button.text}"
                         type="button"></button>
             </div>
         </div>

@@ -2,10 +2,10 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
     <title th:text="#{eventDetails.title}"></title>
 </head>
@@ -27,11 +27,9 @@
 
     <p th:text="#{eventDetails.event.category.description}"></p>
     <p class="font-weight-bold" th:text="${event.description}"></p>
-    <div class="row">
-        <a th:href="${mainPageMapping}">
-            <button type="button" class="btn btn-danger" th:text="#{eventDetails.event.backButton.text}"></button>
-        </a>
-    </div>
+    <a th:href="${mainPageMapping}">
+        <button class="btn btn-danger" th:text="#{eventDetails.event.backButton.text}" type="button"></button>
+    </a>
 </div>
 </body>
 </html>

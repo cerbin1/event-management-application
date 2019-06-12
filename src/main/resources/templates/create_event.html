@@ -2,10 +2,10 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
     <title th:text="#{createEvent.title}"></title>
 </head>
@@ -15,42 +15,42 @@
     <h1 th:text="#{createEvent.mainText}"></h1>
     <h3 th:text="#{createEvent.eventInfo}"></h3>
     <h6 th:text="#{createEvent.fieldsRequiredInfo}"></h6>
-    <form action="#" th:action="@{/wydarzenia/dodaj/podsumowanie}" th:object="${event}" method="post">
+    <form action="#" method="post" th:action="@{/wydarzenia/dodaj/podsumowanie}" th:object="${event}">
         <div class="form-group">
             <label for="event-name" th:text="#{createEvent.eventName.label}"></label>
-            <input id="event-name" class="form-control" type="text" th:field="*{name}"/>
-            <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
+            <input class="form-control" id="event-name" th:field="*{name}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}">
                 <span th:errors="*{name}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="event-category" th:text="#{createEvent.eventCategory.label}"></label>
-            <select class="form-control" th:field="*{category}" id="event-category">
+            <select class="form-control" id="event-category" th:field="*{category}">
                 <option value=""></option>
                 <th:block th:each="category : ${eventCategories}">
-                    <option th:value="${category.value}" th:text="${category.name}"></option>
+                    <option th:text="${category.name}" th:value="${category.value}"></option>
                 </th:block>
             </select>
-            <div th:if="${#fields.hasErrors('category')}" class="alert alert-danger">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('category')}">
                 <span th:errors="*{category}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="event-place" th:text="#{createEvent.eventPlace.label}"></label>
-            <select id="event-place" class="form-control" th:field="*{place}">
+            <select class="form-control" id="event-place" th:field="*{place}">
                 <option value=""></option>
                 <th:block th:each="place : ${eventPlaces}">
-                    <option th:value="${place.value}" th:text="${place.name}"></option>
+                    <option th:text="${place.name}" th:value="${place.value}"></option>
                 </th:block>
             </select>
-            <div th:if="${#fields.hasErrors('place')}" class="alert alert-danger">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('place')}">
                 <span th:errors="*{place}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="organization-name" th:text="#{createEvent.organizationName.label}"></label>
-            <input id="organization-name" class="form-control" type="text" th:field="*{organizationName}"/>
-            <div th:if="${#fields.hasErrors('organizationName')}" class="alert alert-danger">
+            <input class="form-control" id="organization-name" th:field="*{organizationName}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizationName')}">
                 <span th:errors="*{organizationName}"></span>
             </div>
         </div>
@@ -59,29 +59,29 @@
             <input class="form-control" id="date-of-event" th:field="*{dateOfTheEvent}"
                    th:placeholder="#{createEvent.date.format}"
                    type="text"/>
-            <div th:if="${#fields.hasErrors('dateOfTheEvent')}" class="alert alert-danger">
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('dateOfTheEvent')}">
                 <span th:errors="*{dateOfTheEvent}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="description" th:text="#{createEvent.eventDescription.label}"></label>
-            <textarea id="description" class="form-control" th:field="*{description}"></textarea>
-            <div th:if="${#fields.hasErrors('description')}" class="alert alert-danger">
+            <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('description')}">
                 <span th:errors="*{description}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="number-of-participants" th:text="#{createEvent.numberOfParticipants.label}"></label>
-            <input id="number-of-participants" class="form-control" type="number"
-                   th:field="*{plannedNumberOfParticipants}"/>
-            <div th:if="${#fields.hasErrors('plannedNumberOfParticipants')}" class="alert alert-danger">
+            <input class="form-control" id="number-of-participants" th:field="*{plannedNumberOfParticipants}"
+                   type="number"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('plannedNumberOfParticipants')}">
                 <span th:errors="*{plannedNumberOfParticipants}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="comments" th:text="#{createEvent.comments.label}"></label>
-            <textarea id="comments" class="form-control" th:field="*{comments}"></textarea>
-            <div th:if="${#fields.hasErrors('comments')}" class="alert alert-danger">
+            <textarea class="form-control" id="comments" th:field="*{comments}"></textarea>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('comments')}">
                 <span th:errors="*{comments}"></span>
             </div>
         </div>
@@ -99,15 +99,15 @@
             <div class="row">
                 <div class="col-6">
                     <label for="organizer-name" th:text="#{createEvent.organizerName.label}"></label>
-                    <input id="organizer-name" class="form-control" type="text" th:field="*{organizerName}"/>
-                    <div th:if="${#fields.hasErrors('organizerName')}" class="alert alert-danger">
+                    <input class="form-control" id="organizer-name" th:field="*{organizerName}" type="text"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerName')}">
                         <span th:errors="*{organizerName}"></span>
                     </div>
                 </div>
                 <div class="col-6">
                     <label for="organizer-surname" th:text="#{createEvent.organizerSurname.label}"></label>
-                    <input id="organizer-surname" class="form-control" type="text" th:field="*{organizerSurname}"/>
-                    <div th:if="${#fields.hasErrors('organizerSurname')}" class="alert alert-danger">
+                    <input class="form-control" id="organizer-surname" th:field="*{organizerSurname}" type="text"/>
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerSurname')}">
                         <span th:errors="*{organizerSurname}"></span>
                     </div>
                 </div>
@@ -115,23 +115,23 @@
         </div>
         <div class="form-group">
             <label for="phone" th:text="#{createEvent.organizerPhoneNumber.label}"></label>
-            <input id="phone" class="form-control" type="text" th:field="*{organizerPhoneNumber}"/>
-            <div th:if="${#fields.hasErrors('organizerPhoneNumber')}" class="alert alert-danger">
+            <input class="form-control" id="phone" th:field="*{organizerPhoneNumber}" type="text"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerPhoneNumber')}">
                 <span th:errors="*{organizerPhoneNumber}"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="email" th:text="#{createEvent.organizerEmail.label}"></label>
-            <input id="email" class="form-control" type="email" th:field="*{organizerEmail}"/>
-            <div th:if="${#fields.hasErrors('organizerEmail')}" class="alert alert-danger">
+            <input class="form-control" id="email" th:field="*{organizerEmail}" type="email"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('organizerEmail')}">
                 <span th:errors="*{organizerEmail}"></span>
             </div>
         </div>
 
         <div class="form-group">
             <label for="rodo-clause" th:text="#{createEvent.rodo.label}"></label>
-            <input id="rodo-clause" type="checkbox" name="rodoClause" th:checked="*{rodoClause}"/>
-            <div th:if="${#fields.hasErrors('rodoClause')}" class="alert alert-danger">
+            <input id="rodo-clause" name="rodoClause" th:checked="*{rodoClause}" type="checkbox"/>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('rodoClause')}">
                 <span th:errors="*{rodoClause}"></span>
             </div>
         </div>
@@ -140,20 +140,20 @@
         <h3 th:text="#{createEvent.additionalServices.info}"></h3>
         <div class="form-group">
             <label for="promotional-campaign" th:text="#{createEvent.promotionalCampaign.label}"></label>
-            <input id="promotional-campaign" type="checkbox" name="promotionalCampaign"
-                   th:checked="*{promotionalCampaign}"/>
+            <input id="promotional-campaign" name="promotionalCampaign" th:checked="*{promotionalCampaign}"
+                   type="checkbox"/>
         </div>
 
         <div class="form-group">
             <label for="photograph" th:text="#{createEvent.photograph.label}"></label>
-            <input id="photograph" type="checkbox" name="photograph" th:checked="*{photograph}"/>
+            <input id="photograph" name="photograph" th:checked="*{photograph}" type="checkbox"/>
         </div>
 
         <div class="form-group">
             <a th:href="${mainPageMapping}">
-                <button type="button" class="btn btn-danger" th:text="#{createEvent.button.cancel}"></button>
+                <button class="btn btn-danger" th:text="#{createEvent.button.cancel}" type="button"></button>
             </a>
-            <button type="submit" class="btn btn-primary" th:text="#{createEvent.button.summary}">
+            <button class="btn btn-primary" th:text="#{createEvent.button.summary}" type="submit">
             </button>
         </div>
     </form>

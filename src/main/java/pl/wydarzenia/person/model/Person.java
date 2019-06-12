@@ -13,17 +13,17 @@ import static pl.wydarzenia.utils.StringUtils.EMAIL_REGEX;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
-    private  long id;
+    private long id;
 
     @NotEmpty(message = "To pole nie może być puste!")
-    private  String name;
+    private String name;
 
     @NotEmpty(message = "To pole nie może być puste!")
-    private  String surname;
+    private String surname;
 
     @Pattern(regexp = "(^$|[0-9]{7,10})", message = "Proszę podać poprawny numer telefonu, który powinien się składać z 7-10 cyfr!")
-    private  String phoneNumber;
+    private String phoneNumber;
 
     @Pattern(regexp = EMAIL_REGEX, message = "Proszę podać poprawny adres email!")
-    private  String email;
+    private String email;
 }
