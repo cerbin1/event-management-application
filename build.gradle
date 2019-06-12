@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     compile group: 'org.webjars', name: 'bootstrap', version: '4.3.1'
     compile "org.hibernate.validator:hibernate-validator"
