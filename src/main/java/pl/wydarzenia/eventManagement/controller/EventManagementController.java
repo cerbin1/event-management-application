@@ -28,7 +28,7 @@ public class EventManagementController {
         this.personService = personService;
     }
 
-    @GetMapping("wydarzenia/zarzadzanie")
+    @GetMapping("/zarzadzanieWydarzeniami")
     public String getEventManagementPage(Model model) {
         model.addAttribute("events", eventService.getAllEvents());
         model.addAttribute("persons", personService.getAllPersons());
@@ -52,7 +52,7 @@ public class EventManagementController {
             return "events_management_event";
         }
         boolean eventSaveSuccess = eventService.updateEvent(event) == 1;
-        return eventSaveSuccess ? "redirect:/wydarzenia/zarzadzanie" : "events_management_event";
+        return eventSaveSuccess ? "redirect:/zarzadzanieWydarzeniami" : "events_management_event";
     }
 
     @DeleteMapping("/zarzadzanieWydarzeniami/wydarzenie/usun")

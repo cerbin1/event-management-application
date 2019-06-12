@@ -40,7 +40,7 @@ public class PersonController {
         }
 
         boolean personUpdateSuccess = personService.updatePerson(person) == 1;
-        return personUpdateSuccess ? "redirect:/wydarzenia/zarzadzanie" : "person_edit";
+        return personUpdateSuccess ? "redirect:/zarzadzanieWydarzeniami" : "person_edit";
     }
 
 

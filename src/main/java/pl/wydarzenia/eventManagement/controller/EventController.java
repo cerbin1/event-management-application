@@ -58,7 +58,7 @@ public class EventController {
         return eventSaveSuccess ? "redirect:/" : "create_event";
     }
 
-    @GetMapping("wydarzenie/szczegoly")
+    @GetMapping("wydarzenia/szczegoly")
     public String getEventDetails(
             Model model,
             @RequestParam("id") long eventId) {

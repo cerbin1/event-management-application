@@ -43,7 +43,7 @@
                         <td th:text="${event.category}"></td>
                         <td th:text="${event.dateOfTheEvent}"></td>
                         <td>
-                            <form method="get" th:action="@{/wydarzenie/szczegoly}">
+                            <form method="get" th:action="@{/wydarzenia/szczegoly}">
                                 <label>
                                     <input hidden="hidden" name="id" th:value="${event.id}" type="number"/>
                                 </label>

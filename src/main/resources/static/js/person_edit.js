@@ -12,7 +12,7 @@ $(document).ready(function () {
                 id: $('#personId').val()
             },
             success: [function () {
-                window.location.replace('/wydarzenia/zarzadzanie')
+                window.location.replace('/zarzadzanieWydarzeniami')
             }],
             error: [function () {
                 $('#deletePerson').modal('hide');
