@@ -29,7 +29,24 @@ public class EventController {
 
     @GetMapping("wydarzenia/dodaj")
     public String getEventCreationForm(Model model) {
-        model.addAttribute("event", new Event());
+        Event event = new Event();
+        event.setName("Nazwa wydarzenia");
+        event.setCategory("01");
+        event.setPlace("01");
+        event.setOrganizationName("Nazwa organizatora");
+        event.setDateOfTheEvent("01-01-2019");
+        event.setDescription("Opis wydarzenia");
+        event.setPlannedNumberOfParticipants(23);
+        event.setComments("Uwagi");
+        event.setRegulations(true);
+        event.setRodoClause(true);
+        event.setPromotionalCampaign(true);
+        event.setPhotograph(true);
+        event.setOrganizerName("Jan");
+        event.setOrganizerSurname("Nowak");
+        event.setOrganizerPhoneNumber("123456789");
+        event.setOrganizerEmail("jan@kowalski.pl");
+        model.addAttribute("event", event);
         return "create_event";
     }
 
